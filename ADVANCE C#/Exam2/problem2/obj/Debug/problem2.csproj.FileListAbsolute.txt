@@ -1,0 +1,12 @@
+E:\New folder\Exam2\problem2\bin\Debug\problem2.exe.config
+E:\New folder\Exam2\problem2\bin\Debug\problem2.exe
+E:\New folder\Exam2\problem2\bin\Debug\problem2.pdb
+E:\New folder\Exam2\problem2\obj\Debug\problem2.csprojResolveAssemblyReference.cache
+E:\New folder\Exam2\problem2\obj\Debug\problem2.exe
+E:\New folder\Exam2\problem2\obj\Debug\problem2.pdb
+E:\New folder\ADVANCE C#\Exam2\problem2\bin\Debug\problem2.exe.config
+E:\New folder\ADVANCE C#\Exam2\problem2\obj\Debug\problem2.exe
+E:\New folder\ADVANCE C#\Exam2\problem2\obj\Debug\problem2.pdb
+E:\New folder\ADVANCE C#\Exam2\problem2\obj\Debug\problem2.csprojResolveAssemblyReference.cache
+E:\New folder\ADVANCE C#\Exam2\problem2\bin\Debug\problem2.exe
+E:\New folder\ADVANCE C#\Exam2\problem2\bin\Debug\problem2.pdb

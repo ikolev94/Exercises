@@ -1,0 +1,6 @@
+E:\New folder\PIN Validation\PIN Validation\bin\Debug\PIN Validation.exe.config
+E:\New folder\PIN Validation\PIN Validation\bin\Debug\PIN Validation.exe
+E:\New folder\PIN Validation\PIN Validation\bin\Debug\PIN Validation.pdb
+E:\New folder\PIN Validation\PIN Validation\obj\Debug\PIN Validation.csprojResolveAssemblyReference.cache
+E:\New folder\PIN Validation\PIN Validation\obj\Debug\PIN Validation.exe
+E:\New folder\PIN Validation\PIN Validation\obj\Debug\PIN Validation.pdb

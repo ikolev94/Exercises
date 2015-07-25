@@ -1,0 +1,6 @@
+E:\New folder\Parachute\Parachute\bin\Debug\Parachute.exe.config
+E:\New folder\Parachute\Parachute\bin\Debug\Parachute.exe
+E:\New folder\Parachute\Parachute\bin\Debug\Parachute.pdb
+E:\New folder\Parachute\Parachute\obj\Debug\Parachute.csprojResolveAssemblyReference.cache
+E:\New folder\Parachute\Parachute\obj\Debug\Parachute.exe
+E:\New folder\Parachute\Parachute\obj\Debug\Parachute.pdb
