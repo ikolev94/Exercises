@@ -12,7 +12,7 @@
 
     internal partial class TheatreMain
     {
-        public static IPerformanceDatabase Engine = new Engine();
+        private static readonly Engine Engine = new Engine();
 
         protected static void Main()
         {
@@ -72,7 +72,7 @@
                                 TimeSpan duration = result2;
                                 decimal result3 = decimal.Parse(chiHuyParams[4], CultureInfo.InvariantCulture);
                                 decimal price = result3;
-
+                                
                                 Engine.AddPerformance(theatreName, performanceTitle, startDateTime, duration, price);
                                 commandResult = "Performance added";
                                 break;

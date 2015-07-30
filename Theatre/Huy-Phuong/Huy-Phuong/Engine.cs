@@ -26,7 +26,7 @@
             return t2;
         }
 
-        void IPerformanceDatabase.AddPerformance(string theatre, string performance, DateTime dateAndTime, TimeSpan duration, decimal price)
+        public void AddPerformance(string theatre, string performance, DateTime dateAndTime, TimeSpan duration, decimal price)
         {
             if (!this.sortedDictionaryStringSortedSetPerformance.ContainsKey(theatre))
             {
@@ -59,7 +59,7 @@
             return result2;
         }
 
-        IEnumerable<Performance> IPerformanceDatabase.ListPerformances(string theatreName)
+        public IEnumerable<Performance> ListPerformances(string theatreName)
         {
             if (!this.sortedDictionaryStringSortedSetPerformance.ContainsKey(theatreName))
             {

@@ -12,12 +12,7 @@
         IEnumerable<string> ListTheatres();
 
         // TODO: document this method, its parameters, return value, exceptions, etc.
-        void AddPerformance(
-            string theatreName,
-            string performanceTitle,
-            DateTime startDateTime,
-            TimeSpan duration,
-            decimal price);
+        void AddPerformance(string theatreName, string performanceTitle, DateTime startDateTime, TimeSpan duration, decimal price);
 
         // TODO: document this method, its parameters, return value, exceptions, etc.
         IEnumerable<Performance> ListAllPerformances();
