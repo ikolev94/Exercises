@@ -1,0 +1,6 @@
+E:\New folder\Matrix Shuffle\Matrix Shuffle\bin\Debug\Matrix Shuffle.exe.config
+E:\New folder\Matrix Shuffle\Matrix Shuffle\bin\Debug\Matrix Shuffle.exe
+E:\New folder\Matrix Shuffle\Matrix Shuffle\bin\Debug\Matrix Shuffle.pdb
+E:\New folder\Matrix Shuffle\Matrix Shuffle\obj\Debug\Matrix Shuffle.csprojResolveAssemblyReference.cache
+E:\New folder\Matrix Shuffle\Matrix Shuffle\obj\Debug\Matrix Shuffle.exe
+E:\New folder\Matrix Shuffle\Matrix Shuffle\obj\Debug\Matrix Shuffle.pdb

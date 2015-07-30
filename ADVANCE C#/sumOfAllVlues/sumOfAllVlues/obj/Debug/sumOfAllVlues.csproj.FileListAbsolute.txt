@@ -1,0 +1,6 @@
+E:\New folder\sumOfAllVlues\sumOfAllVlues\bin\Debug\sumOfAllVlues.exe.config
+E:\New folder\sumOfAllVlues\sumOfAllVlues\bin\Debug\sumOfAllVlues.exe
+E:\New folder\sumOfAllVlues\sumOfAllVlues\bin\Debug\sumOfAllVlues.pdb
+E:\New folder\sumOfAllVlues\sumOfAllVlues\obj\Debug\sumOfAllVlues.csprojResolveAssemblyReference.cache
+E:\New folder\sumOfAllVlues\sumOfAllVlues\obj\Debug\sumOfAllVlues.exe
+E:\New folder\sumOfAllVlues\sumOfAllVlues\obj\Debug\sumOfAllVlues.pdb

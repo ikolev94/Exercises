@@ -1,0 +1,6 @@
+E:\New folder\Biggest Table Row\Biggest Table Row\bin\Debug\Biggest Table Row.exe.config
+E:\New folder\Biggest Table Row\Biggest Table Row\obj\Debug\Biggest Table Row.csprojResolveAssemblyReference.cache
+E:\New folder\Biggest Table Row\Biggest Table Row\bin\Debug\Biggest Table Row.exe
+E:\New folder\Biggest Table Row\Biggest Table Row\bin\Debug\Biggest Table Row.pdb
+E:\New folder\Biggest Table Row\Biggest Table Row\obj\Debug\Biggest Table Row.exe
+E:\New folder\Biggest Table Row\Biggest Table Row\obj\Debug\Biggest Table Row.pdb

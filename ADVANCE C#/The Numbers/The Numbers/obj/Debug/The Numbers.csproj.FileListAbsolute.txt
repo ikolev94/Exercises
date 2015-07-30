@@ -1,0 +1,6 @@
+E:\New folder\The Numbers\The Numbers\bin\Debug\The Numbers.exe.config
+E:\New folder\The Numbers\The Numbers\bin\Debug\The Numbers.exe
+E:\New folder\The Numbers\The Numbers\bin\Debug\The Numbers.pdb
+E:\New folder\The Numbers\The Numbers\obj\Debug\The Numbers.csprojResolveAssemblyReference.cache
+E:\New folder\The Numbers\The Numbers\obj\Debug\The Numbers.exe
+E:\New folder\The Numbers\The Numbers\obj\Debug\The Numbers.pdb

@@ -1,0 +1,6 @@
+E:\New folder\Chat Logger\Chat Logger\bin\Debug\Chat Logger.exe.config
+E:\New folder\Chat Logger\Chat Logger\bin\Debug\Chat Logger.exe
+E:\New folder\Chat Logger\Chat Logger\bin\Debug\Chat Logger.pdb
+E:\New folder\Chat Logger\Chat Logger\obj\Debug\Chat Logger.csprojResolveAssemblyReference.cache
+E:\New folder\Chat Logger\Chat Logger\obj\Debug\Chat Logger.exe
+E:\New folder\Chat Logger\Chat Logger\obj\Debug\Chat Logger.pdb

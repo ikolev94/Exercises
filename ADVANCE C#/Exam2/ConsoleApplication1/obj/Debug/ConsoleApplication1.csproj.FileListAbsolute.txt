@@ -1,0 +1,9 @@
+E:\New folder\Exam2\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+E:\New folder\Exam2\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+E:\New folder\Exam2\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+E:\New folder\Exam2\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+E:\New folder\Exam2\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+E:\New folder\Exam2\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+E:\New folder\ADVANCE C#\Exam2\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+E:\New folder\ADVANCE C#\Exam2\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+E:\New folder\ADVANCE C#\Exam2\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

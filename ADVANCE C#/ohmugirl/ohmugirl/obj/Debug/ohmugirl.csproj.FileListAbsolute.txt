@@ -1,0 +1,12 @@
+E:\New folder\ohmugirl\ohmugirl\bin\Debug\ohmugirl.exe.config
+E:\New folder\ohmugirl\ohmugirl\obj\Debug\ohmugirl.csprojResolveAssemblyReference.cache
+E:\New folder\ohmugirl\ohmugirl\bin\Debug\ohmugirl.exe
+E:\New folder\ohmugirl\ohmugirl\bin\Debug\ohmugirl.pdb
+E:\New folder\ohmugirl\ohmugirl\obj\Debug\ohmugirl.exe
+E:\New folder\ohmugirl\ohmugirl\obj\Debug\ohmugirl.pdb
+E:\New folder\ADVANCE C#\ohmugirl\ohmugirl\bin\Debug\ohmugirl.exe.config
+E:\New folder\ADVANCE C#\ohmugirl\ohmugirl\obj\Debug\ohmugirl.exe
+E:\New folder\ADVANCE C#\ohmugirl\ohmugirl\obj\Debug\ohmugirl.pdb
+E:\New folder\ADVANCE C#\ohmugirl\ohmugirl\obj\Debug\ohmugirl.csprojResolveAssemblyReference.cache
+E:\New folder\ADVANCE C#\ohmugirl\ohmugirl\bin\Debug\ohmugirl.exe
+E:\New folder\ADVANCE C#\ohmugirl\ohmugirl\bin\Debug\ohmugirl.pdb

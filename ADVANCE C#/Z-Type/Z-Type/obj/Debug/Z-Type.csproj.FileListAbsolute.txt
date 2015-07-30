@@ -1,0 +1,6 @@
+E:\New folder\Z-Type\Z-Type\bin\Debug\Z-Type.exe.config
+E:\New folder\Z-Type\Z-Type\bin\Debug\Z-Type.exe
+E:\New folder\Z-Type\Z-Type\bin\Debug\Z-Type.pdb
+E:\New folder\Z-Type\Z-Type\obj\Debug\Z-Type.csprojResolveAssemblyReference.cache
+E:\New folder\Z-Type\Z-Type\obj\Debug\Z-Type.exe
+E:\New folder\Z-Type\Z-Type\obj\Debug\Z-Type.pdb
