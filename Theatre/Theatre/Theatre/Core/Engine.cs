@@ -102,8 +102,8 @@
 
         public IEnumerable<string> ListTheatres()
         {
-            var t2 = this.allTheatres.Keys;
-            return t2;
+            var teatres = this.allTheatres.Keys;
+            return teatres;
         }
 
         public void AddPerformance(string theatre, string performance, DateTime dateAndTime, TimeSpan duration, decimal price)
@@ -113,30 +113,30 @@
                 throw new TheatreNotFoundException("Theatre does not exist");
             }
 
-            var ps = this.allTheatres[theatre];
+            var performances = this.allTheatres[theatre];
 
             var endOfPerformance = dateAndTime + duration;
-            if (this.IsAvailableSlot(ps, dateAndTime, endOfPerformance))
+            if (this.IsAvailableSlot(performances, dateAndTime, endOfPerformance))
             {
                 throw new TimeDurationOverlapException("Time/duration overlap");
             }
 
-            var p = new Performance(theatre, performance, dateAndTime, duration, price);
-            ps.Add(p);
+            var performanceToAdd = new Performance(theatre, performance, dateAndTime, duration, price);
+            performances.Add(performanceToAdd);
         }
 
         public IEnumerable<Performance> ListAllPerformances()
         {
             var theatres = this.allTheatres.Keys;
 
-            var result2 = new List<Performance>();
-            foreach (var t in theatres)
+            var allPerformances = new List<Performance>();
+            foreach (var theate in theatres)
             {
-                var performances = this.allTheatres[t];
-                result2.AddRange(performances);
+                var performances = this.allTheatres[theate];
+                allPerformances.AddRange(performances);
             }
 
-            return result2;
+            return allPerformances;
         }
 
         public IEnumerable<Performance> ListPerformances(string theatreName)
@@ -146,8 +146,7 @@
                 throw new TheatreNotFoundException("Theatre does not exist");
             }
 
-            var asfd = this.allTheatres[theatreName];
-            return asfd;
+            return this.allTheatres[theatreName];
         }
 
         private bool IsAvailableSlot(IEnumerable<Performance> performances, DateTime startTime, DateTime endTime)
