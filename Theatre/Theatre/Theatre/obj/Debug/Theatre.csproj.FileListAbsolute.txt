@@ -1,6 +1,0 @@
-C:\Users\DeLL_PC\Desktop\Exercises\Theatre\Theatre\Theatre\bin\Debug\Theatre.exe.config
-C:\Users\DeLL_PC\Desktop\Exercises\Theatre\Theatre\Theatre\bin\Debug\Theatre.exe
-C:\Users\DeLL_PC\Desktop\Exercises\Theatre\Theatre\Theatre\bin\Debug\Theatre.pdb
-C:\Users\DeLL_PC\Desktop\Exercises\Theatre\Theatre\Theatre\obj\Debug\Theatre.csprojResolveAssemblyReference.cache
-C:\Users\DeLL_PC\Desktop\Exercises\Theatre\Theatre\Theatre\obj\Debug\Theatre.exe
-C:\Users\DeLL_PC\Desktop\Exercises\Theatre\Theatre\Theatre\obj\Debug\Theatre.pdb
