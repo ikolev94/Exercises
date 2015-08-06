@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FBB954EB-596F-4A52-A91F-815EB3590D25}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{92B73B6C-5C27-467A-BCAA-7FD6B0686564}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Theatre</RootNamespace>
-    <AssemblyName>Theatre</AssemblyName>
+    <RootNamespace>SolidLogger</RootNamespace>
+    <AssemblyName>SolidLogger</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,17 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\DuplicateTheatreException.cs" />
-    <Compile Include="Core\Engine.cs" />
-    <Compile Include="Interfaces\IPerformanceDatabase.cs" />
-    <Compile Include="Models\Performance.cs" />
+    <Compile Include="Appenders\Appender.cs" />
+    <Compile Include="Appenders\ConsoleAppender.cs" />
+    <Compile Include="Exceptions\LayoutNullException.cs" />
+    <Compile Include="Interfaces\IAppender.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="Layouts\JsonLayout.cs" />
+    <Compile Include="Loggers\Logger.cs" />
+    <Compile Include="ReportLevel.cs" />
+    <Compile Include="Interfaces\ILayout.cs" />
+    <Compile Include="Layouts\SimpleLayout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TheatreMain.cs" />
-    <Compile Include="Exceptions\TheatreNotfoundException.cs" />
-    <Compile Include="Exceptions\TimeDurationOverlapException.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

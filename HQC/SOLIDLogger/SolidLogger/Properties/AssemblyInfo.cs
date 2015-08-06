@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Theatre")]
+[assembly: AssemblyTitle("SolidLogger")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Theatre")]
+[assembly: AssemblyProduct("SolidLogger")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7505620c-26bf-4941-a6e1-069cd9c6f7d4")]
+[assembly: Guid("0b3bf67e-0131-4fc0-ac33-1d95bbdceb73")]
 
 // Version information for an assembly consists of the following four values:
 //
