@@ -1,6 +1,7 @@
 ﻿namespace UnitTestSolidLogger
 {
     using System;
+    using System.IO;
     using System.Text;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,6 +13,7 @@
     using SolidLogger.Exceptions;
     using SolidLogger.Interfaces;
     using SolidLogger.Layouts;
+    using SolidLogger.Loggers;
 
     using SOLIDLogger.Appenders;
     using SOLIDLogger.Exceptions;
@@ -81,7 +83,63 @@
             var message = It.IsAny<string>();
             var mock = new Mock<ILayout>();
             mock.Object.LayoutMaker(date, ReportLevel, message);
-            mock.Verify(layout => layout.LayoutMaker(date, ReportLevel, message), Times.Exactly(1));
+            mock.Verify(layout => layout.LayoutMaker(date, ReportLevel, message), Times.Once);
         }
+
+        [TestMethod]
+        public void TestConsoleAppender_ShouldAppendCorrectly()
+        {
+            const string FakeResult = "It works";
+            string expetedOutput = "It works" + Environment.NewLine;
+            DateTime date = DateTime.Now;
+            const ReportLevel ReportLevel = ReportLevel.Error;
+            var message = It.IsAny<string>();
+            var mock = new Mock<ILayout>();
+
+            mock.Setup(layout => layout.LayoutMaker(date, ReportLevel, message)).Returns(FakeResult);
+            StringWriter actualOutput = new StringWriter();
+            Console.SetOut(actualOutput);
+            IAppender consoleAppender = new ConsoleAppender(mock.Object);
+            consoleAppender.Append(date, ReportLevel, message);
+            mock.Verify(a => a.LayoutMaker(date, ReportLevel, message), Times.Once);
+            Assert.AreEqual(expetedOutput, actualOutput.ToString());
+        }
+
+        [TestMethod]
+        public void TestFileAppender_ShouldAppendOnFile()
+        {
+            const string FakeResult = "It works";
+            const string FilePath = "../../Log.txt";
+            string expetedOutput = "It works" + Environment.NewLine;
+            DateTime date = DateTime.Now;
+            const ReportLevel ReportLevel = ReportLevel.Error;
+            var message = It.IsAny<string>();
+            var mock = new Mock<ILayout>();
+            mock.Setup(layout => layout.LayoutMaker(date, ReportLevel, message)).Returns(FakeResult);
+            var fileAppender = new FileAppender(mock.Object, FilePath);
+
+            Assert.IsTrue(File.Exists(FilePath));
+            fileAppender.Append(date, ReportLevel, message);
+            fileAppender.Close();
+            StreamReader reader = new StreamReader(FilePath);
+            string actualOutput = reader.ReadToEnd();
+            reader.Close();
+            mock.Verify(a => a.LayoutMaker(date, ReportLevel, message), Times.Once);
+            Assert.AreEqual(expetedOutput, actualOutput);
+        }
+
+        //[TestMethod]
+        //public void Test_Should()
+        //{
+        //    DateTime date = DateTime.Now;
+        //    const ReportLevel ReportLevel = ReportLevel.Error;
+        //    var message = It.IsAny<string>();
+
+        //    var mock = new Mock<IAppender>();
+
+        //    var logger = new Logger(mock.Object);
+        //    logger.Warning(message);
+        //    mock.Verify(a => a.Append(date, ReportLevel, message), Times.AtLeastOnce);
+        //}
     }
 }
