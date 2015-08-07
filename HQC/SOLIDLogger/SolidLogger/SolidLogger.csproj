@@ -7,8 +7,8 @@
     <ProjectGuid>{92B73B6C-5C27-467A-BCAA-7FD6B0686564}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolidLogger</RootNamespace>
-    <AssemblyName>SolidLogger</AssemblyName>
+    <RootNamespace>SOLIDLogger</RootNamespace>
+    <AssemblyName>SOLIDLogger</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

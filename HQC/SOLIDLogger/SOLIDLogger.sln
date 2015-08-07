@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidLogger", "SolidLogger\SolidLogger.csproj", "{92B73B6C-5C27-467A-BCAA-7FD6B0686564}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOLIDLogger", "SolidLogger\SOLIDLogger.csproj", "{92B73B6C-5C27-467A-BCAA-7FD6B0686564}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
