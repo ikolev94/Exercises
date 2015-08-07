@@ -7,13 +7,11 @@
 
     public abstract class Appender : IAppender
     {
-        private readonly ReportLevel defaultReportLevel;
-
         private ILayout layout;
-        
+
         protected Appender(ILayout layout)
         {
-            this.defaultReportLevel = ReportLevel.Info;
+            this.ReportLevel = ReportLevel.Info;
             this.Layout = layout;
         }
 
@@ -39,7 +37,7 @@
 
         public void Append(DateTime date, ReportLevel reportLevel, string message)
         {
-            if (this.defaultReportLevel <= reportLevel)
+            if (this.ReportLevel <= reportLevel)
             {
                 this.AppendExecuter(date, reportLevel, message);
             }
