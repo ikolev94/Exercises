@@ -11,7 +11,5 @@
         void Critical(string message);
 
         void Fatal(string message);
-
-        void Log(ReportLevel reportLevel, string message);
     }
 }

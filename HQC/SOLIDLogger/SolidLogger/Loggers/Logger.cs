@@ -39,7 +39,7 @@
             this.Log(ReportLevel.Fatal, message);
         }
 
-        public void Log(ReportLevel reportLevel, string message)
+        private void Log(ReportLevel reportLevel, string message)
         {
             foreach (var appender in this.appenders)
             {

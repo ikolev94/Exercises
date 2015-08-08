@@ -26,7 +26,7 @@
         {
             // Arrange
             ILayout layout = new SimpleLayout();
-            DateTime date = DateTime.Now;
+            DateTime date = It.IsAny<DateTime>();
             const ReportLevel ReportLevel = ReportLevel.Error;
             const string Message = "Exo";
             string expectedOutput = string.Format("{0}-{1}-{2}", date, ReportLevel, Message);
@@ -78,7 +78,8 @@
         [TestMethod]
         public void TestLayoutMaker_ShouldBeCallOutOnes()
         {
-            DateTime date = DateTime.Now;
+            bool a = false;
+            DateTime date = It.IsAny<DateTime>();
             const ReportLevel ReportLevel = ReportLevel.Error;
             var message = It.IsAny<string>();
             var mock = new Mock<ILayout>();
@@ -91,7 +92,7 @@
         {
             const string FakeResult = "It works";
             string expetedOutput = "It works" + Environment.NewLine;
-            DateTime date = DateTime.Now;
+            DateTime date = It.IsAny<DateTime>();
             const ReportLevel ReportLevel = ReportLevel.Error;
             var message = It.IsAny<string>();
             var mock = new Mock<ILayout>();
@@ -111,7 +112,7 @@
             const string FakeResult = "It works";
             const string FilePath = "../../Log.txt";
             string expetedOutput = "It works" + Environment.NewLine;
-            DateTime date = DateTime.Now;
+            DateTime date = It.IsAny<DateTime>();
             const ReportLevel ReportLevel = ReportLevel.Error;
             var message = It.IsAny<string>();
             var mock = new Mock<ILayout>();
@@ -128,18 +129,18 @@
             Assert.AreEqual(expetedOutput, actualOutput);
         }
 
-        //[TestMethod]
-        //public void Test_Should()
-        //{
-        //    DateTime date = DateTime.Now;
-        //    const ReportLevel ReportLevel = ReportLevel.Error;
-        //    var message = It.IsAny<string>();
+        [TestMethod]
+        public void TestWarning_ShouldBeCalledTwoTimes()
+        {
+            int calls = 0;
+            var message = It.IsAny<string>();
 
-        //    var mock = new Mock<IAppender>();
-
-        //    var logger = new Logger(mock.Object);
-        //    logger.Warning(message);
-        //    mock.Verify(a => a.Append(date, ReportLevel, message), Times.AtLeastOnce);
-        //}
+            var mockLogger = new Mock<ILogger>();
+            mockLogger.Setup(logger => logger.Warning(message)).Callback(() => calls++);
+            mockLogger.Object.Warning(message);
+            mockLogger.Object.Warning(message);
+            mockLogger.Verify(l => l.Warning(message), Times.Exactly(2));
+            Assert.AreEqual(2, calls);
+        }
     }
 }
