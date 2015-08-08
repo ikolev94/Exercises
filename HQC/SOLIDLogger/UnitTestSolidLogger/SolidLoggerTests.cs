@@ -64,7 +64,7 @@
         [ExpectedException(typeof(LayoutNullException))]
         public void TestAppenderWithNullLayout_ShouldThrowLayoutNullException()
         {
-            IAppender consoleAppender = new ConsoleAppender(null);
+            new ConsoleAppender(null);
         }
 
         [TestMethod]
@@ -72,13 +72,12 @@
         public void TestAppenderWithInvalidFilePath_ShouldThrowFilePathNotFoundException()
         {
             var mock = new Mock<ILayout>();
-            var consoleAppender = new FileAppender(mock.Object, string.Empty);
+            new FileAppender(mock.Object, string.Empty);
         }
 
         [TestMethod]
         public void TestLayoutMaker_ShouldBeCallOutOnes()
         {
-            bool a = false;
             DateTime date = It.IsAny<DateTime>();
             const ReportLevel ReportLevel = ReportLevel.Error;
             var message = It.IsAny<string>();
@@ -141,6 +140,86 @@
             mockLogger.Object.Warning(message);
             mockLogger.Verify(l => l.Warning(message), Times.Exactly(2));
             Assert.AreEqual(2, calls);
+        }
+
+        [TestMethod]
+        public void TestLoggerError_ShouldAppendOnTheConsoleCorrectly()
+        {
+            DateTime date = DateTime.Now;
+            const ReportLevel ReportLevel = ReportLevel.Error;
+            var message = It.IsAny<string>();
+            string expetedOutput = string.Format("{0}-{1}-{2}{3}", date, ReportLevel, message, Environment.NewLine);
+            var layout = new SimpleLayout();
+            IAppender consoleAppender = new ConsoleAppender(layout);
+            ILogger logger = new Logger(consoleAppender);
+            StringWriter actualOutput = new StringWriter();
+            Console.SetOut(actualOutput);
+            logger.Error(message);
+            Assert.AreEqual(expetedOutput, actualOutput.ToString());
+        }
+
+        [TestMethod]
+        public void TestLoggerCritical_ShouldAppendOnTheConsoleCorrectly()
+        {
+            DateTime date = DateTime.Now;
+            const ReportLevel ReportLevel = ReportLevel.Critical;
+            var message = It.IsAny<string>();
+            string expetedOutput = string.Format("{0}-{1}-{2}{3}", date, ReportLevel, message, Environment.NewLine);
+            var layout = new SimpleLayout();
+            IAppender consoleAppender = new ConsoleAppender(layout);
+            ILogger logger = new Logger(consoleAppender);
+            StringWriter actualOutput = new StringWriter();
+            Console.SetOut(actualOutput);
+            logger.Critical(message);
+            Assert.AreEqual(expetedOutput, actualOutput.ToString());
+        }
+
+        [TestMethod]
+        public void TestLoggerFatal_ShouldAppendOnTheConsoleCorrectly()
+        {
+            DateTime date = DateTime.Now;
+            const ReportLevel ReportLevel = ReportLevel.Fatal;
+            var message = It.IsAny<string>();
+            string expetedOutput = string.Format("{0}-{1}-{2}{3}", date, ReportLevel, message, Environment.NewLine);
+            var layout = new SimpleLayout();
+            IAppender consoleAppender = new ConsoleAppender(layout);
+            ILogger logger = new Logger(consoleAppender);
+            StringWriter actualOutput = new StringWriter();
+            Console.SetOut(actualOutput);
+            logger.Fatal(message);
+            Assert.AreEqual(expetedOutput, actualOutput.ToString());
+        }
+
+        [TestMethod]
+        public void TestLoggerWarning_ShouldAppendOnTheConsoleCorrectly()
+        {
+            DateTime date = DateTime.Now;
+            const ReportLevel ReportLevel = ReportLevel.Warnimg;
+            var message = It.IsAny<string>();
+            string expetedOutput = string.Format("{0}-{1}-{2}{3}", date, ReportLevel, message, Environment.NewLine);
+            var layout = new SimpleLayout();
+            IAppender consoleAppender = new ConsoleAppender(layout);
+            ILogger logger = new Logger(consoleAppender);
+            StringWriter actualOutput = new StringWriter();
+            Console.SetOut(actualOutput);
+            logger.Warning(message);
+            Assert.AreEqual(expetedOutput, actualOutput.ToString());
+        }
+
+        [TestMethod]
+        public void TestLoggerInfo_ShouldAppendOnTheConsoleCorrectly()
+        {
+            DateTime date = DateTime.Now;
+            const ReportLevel ReportLevel = ReportLevel.Info;
+            var message = It.IsAny<string>();
+            string expetedOutput = string.Format("{0}-{1}-{2}{3}", date, ReportLevel, message, Environment.NewLine);
+            var layout = new SimpleLayout();
+            IAppender consoleAppender = new ConsoleAppender(layout);
+            ILogger logger = new Logger(consoleAppender);
+            StringWriter actualOutput = new StringWriter();
+            Console.SetOut(actualOutput);
+            logger.Info(message);
+            Assert.AreEqual(expetedOutput, actualOutput.ToString());
         }
     }
 }
