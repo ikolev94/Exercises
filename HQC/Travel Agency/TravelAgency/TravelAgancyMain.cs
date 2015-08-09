@@ -8,7 +8,7 @@
     {
         private static void Main()
         {
-            Engine parwana = new Engine();
+            Engine engine = new Engine();
             while (true)
             {
                 string line = Console.ReadLine();
@@ -18,7 +18,7 @@
                 }
 
                 line = line.Trim();
-                string commandResult = parwana.AmalKamaan(line);
+                string commandResult = engine.ExecuteCommand(line);
                 if (commandResult != null)
                 {
                     Console.WriteLine(commandResult);

@@ -4,25 +4,25 @@
 
     public class AirTicket : Ticket
     {
-        public AirTicket(string parwaaz_number, string from, string to, string airline, string dt, string pp)
+        public AirTicket(string flightNumber, string from, string to, string airline, string dateAndTime, string price)
         {
-            this.parwaaz_number = parwaaz_number;
+            this.FlightNumber = flightNumber;
             this.From = from;
-            this.To = from;
+            this.To = to;
 
             this.Company = airline;
-            DateTime dateAndTime = ParseDateTime(dt);
-            this.DateAndTime = dateAndTime;
-            decimal price = decimal.Parse(pp);
-            this.Price = price;
+            DateTime dateAndTimeHelp = ParseDateTime(dateAndTime);
+            this.DateAndTime = dateAndTimeHelp;
+            this.Price = decimal.Parse(price);
+            
         }
 
-        public AirTicket(string parwaaz_number)
+        public AirTicket(string flightNumber)
         {
-            this.parwaaz_number = parwaaz_number;
+            this.FlightNumber = flightNumber;
         }
 
-        public string parwaaz_number { get; set; }
+        public string FlightNumber { get; set; }
 
         public override string Type
         {
@@ -36,7 +36,7 @@
         {
             get
             {
-                return this.Type + ";;" + this.parwaaz_number;
+                return this.Type + ";;" + this.FlightNumber;
             }
         }
     }

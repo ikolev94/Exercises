@@ -49,7 +49,6 @@
 
         public string FindTicketsInInterval(DateTime startDateTime, DateTime endDateTime)
         {
-            // Do not toch! It work!!! I spend 10 hours of fix buggy here
             var ticketsFound = this.Dict3.Range(startDateTime, true, endDateTime, true).Values;
             if (ticketsFound.Count > 0)
             {
@@ -64,7 +63,7 @@
         }
 
         public string AddAirTicket(
-            string parwaaz_number, 
+            string flightNumber, 
             string from, 
             string to, 
             string airline, 
@@ -72,7 +71,7 @@
             decimal price)
         {
             return this.AddAirTicket(
-                parwaaz_number, 
+                flightNumber, 
                 from, 
                 to, 
                 airline, 
@@ -102,7 +101,7 @@
 
         public string AddBusTicket(string from, string to, string Sayahat_ki_Tanzeem, DateTime dateTime, decimal price)
         {
-            return this.basKaTicketKaIzafah(
+            return this.AddBusTiket(
                 from, 
                 to, 
                 Sayahat_ki_Tanzeem, 
@@ -145,50 +144,48 @@
             return this.trainTicketsCount;
         }
 
-        public string AddDeleteTicket(Ticket ticket, bool isAdd)
+        public string AddTicket(Ticket ticket)
         {
-            if (isAdd)
+            string key = ticket.MunfaridKuleed;
+            if (this.Dict.ContainsKey(key))
             {
-                string key = ticket.MunfaridKuleed;
-                if (this.Dict.ContainsKey(key))
-                {
-                    return "Duplicated ticket";
-                }
-                else
-                {
-                    this.Dict.Add(key, ticket);
-                    string fromToKey = ticket.FromToKey;
-
-                    this.Dict2.Add(fromToKey, ticket);
-                    this.Dict3.Add(ticket.DateAndTime, ticket);
-                    return "Ticket added";
-                }
+                return "Duplicate ticket";
             }
             else
             {
-                string key = ticket.MunfaridKuleed;
-                if (this.Dict.ContainsKey(key))
-                {
-                    ticket = this.Dict[key];
-                    this.Dict.Remove(key);
-                    string fromToKey = ticket.FromToKey;
+                this.Dict.Add(key, ticket);
+                string fromToKey = ticket.FromToKey;
 
-                    this.Dict2.Remove(fromToKey, ticket);
-                    this.Dict3.Remove(ticket.DateAndTime, ticket);
-                    return "Ticket deleted";
-                }
-                else
-                {
-                    return "Ticket does not exist";
-                }
+                this.Dict2.Add(fromToKey, ticket);
+                this.Dict3.Add(ticket.DateAndTime, ticket);
+                return "Ticket added";
             }
         }
 
-        public string AddAirTicket(string parwaaz_number, string from, string to, string airline, string dt, string pp)
+        public string DeleteTicket(Ticket ticket)
         {
-            AirTicket ticket = new AirTicket(parwaaz_number, from, to, airline, dt, pp);
+            string key = ticket.MunfaridKuleed;
+            if (this.Dict.ContainsKey(key))
+            {
+                ticket = this.Dict[key];
+                this.Dict.Remove(key);
+                string fromToKey = ticket.FromToKey;
 
-            string result = this.AddDeleteTicket(ticket, true);
+                this.Dict2.Remove(fromToKey, ticket);
+                this.Dict3.Remove(ticket.DateAndTime, ticket);
+                return "Ticket deleted";
+            }
+            else
+            {
+                return "Ticket does not exist";
+            }
+        }
+
+        public string AddAirTicket(string flightNumber, string from, string to, string airline, string dateAndTime, string price)
+        {
+            AirTicket ticket = new AirTicket(flightNumber, from, to, airline, dateAndTime, price);
+
+            string result = this.AddTicket(ticket);
             if (result.Contains("added"))
             {
                 this.airTicketsCount++;
@@ -197,11 +194,11 @@
             return result;
         }
 
-        protected string DeleteAirTicket(string parwaaz_number)
+        public string DeleteAirTicket(string parwaaz_number)
         {
             AirTicket ticket = new AirTicket(parwaaz_number);
 
-            string result = this.AddDeleteTicket(ticket, false);
+            string result = this.DeleteTicket(ticket);
             if (result.Contains("deleted"))
             {
                 this.airTicketsCount--;
@@ -214,7 +211,7 @@
         {
             TrainTicket ticket = new TrainTicket(from, to, dt, pp, studentpp);
 
-            string result = this.AddDeleteTicket(ticket, true);
+            string result = this.AddTicket(ticket);
             if (result.Contains("added"))
             {
                 this.trainTicketsCount++;
@@ -223,10 +220,10 @@
             return result;
         }
 
-        private string DeleteTrainTicket(string from, string to, string dt)
+        public string DeleteTrainTicket(string from, string to, string dt)
         {
             TrainTicket ticket = new TrainTicket(from, to, dt);
-            string result = this.AddDeleteTicket(ticket, false);
+            string result = this.DeleteTicket(ticket);
 
             if (result.Contains("deleted"))
             {
@@ -236,7 +233,7 @@
             return result;
         }
 
-        protected string basKaTicketKaIzafah(string from, string to, string Sayahat_ki_Tanzeem, string dt, string pp)
+        public string AddBusTiket(string from, string to, string Sayahat_ki_Tanzeem, string dt, string pp)
         {
             BusTicket ticket = new BusTicket(from, to, Sayahat_ki_Tanzeem, dt, pp);
             string key = ticket.MunfaridKuleed;
@@ -264,10 +261,10 @@
             return result;
         }
 
-        private string DeleteBusTicket(string from, string to, string Sayahat_ki_Tanzeem, string dt)
+        public string DeleteBusTicket(string from, string to, string Sayahat_ki_Tanzeem, string dt)
         {
             BusTicket ticket = new BusTicket(from, to, Sayahat_ki_Tanzeem, dt);
-            string result = this.AddDeleteTicket(ticket, false);
+            string result = this.DeleteTicket(ticket);
 
             if (result.Contains("deleted"))
             {
@@ -277,7 +274,7 @@
             return result;
         }
 
-        internal static string ReadTickets(ICollection<Ticket> tickets)
+        public string ReadTickets(ICollection<Ticket> tickets)
         {
             List<Ticket> sortedTickets = new List<Ticket>(tickets);
 
@@ -292,14 +289,14 @@
 
                 if (i < sortedTickets.Count - 1)
                 {
-                    result += ",  ";
+                    result += " ";
                 }
             }
 
             return result;
         }
 
-        public string findTicketsInInterval(string startDateTimeStr, string endDateTimeStr)
+        public string FindTicketsInInterval(string startDateTimeStr, string endDateTimeStr)
         {
             DateTime startDateTime = Ticket.ParseDateTime(startDateTimeStr);
 
@@ -324,7 +321,7 @@
             }
         }
 
-        internal string AmalKamaan(string line)
+        public string ExecuteCommand(string line)
         {
             if (line == string.Empty)
             {
@@ -332,25 +329,25 @@
             }
 
             int firstSpaceIndex = line.IndexOf(' ');
-
             if (firstSpaceIndex == -1)
             {
                 return "Invalid command!";
             }
 
-            string cd = line.Substring(0, firstSpaceIndex);
-            string cd2 = "Invalid command!";
-            switch (cd)
+            string command = line.Substring(0, firstSpaceIndex);
+            string result = "Invalid command!";
+
+            string allParameters = line.Substring(firstSpaceIndex + 1);
+            string[] parameters = allParameters.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                parameters[i] = parameters[i].Trim();
+            }
+
+            switch (command)
             {
                 case "AddAir":
-                    string allParameters = line.Substring(firstSpaceIndex + 1);
-                    string[] parameters = allParameters.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    for (int i = 0; i < parameters.Length; i++)
-                    {
-                        parameters[i] = parameters[i].Trim();
-                    }
-
-                    cd2 = this.AddAirTicket(
+                   result = this.AddAirTicket(
                         parameters[0], 
                         parameters[1], 
                         parameters[2], 
@@ -359,45 +356,16 @@
                         parameters[5]);
                     break;
                 case "DeleteAir":
-
-                    allParameters = line.Substring(firstSpaceIndex + 1);
-                    parameters = allParameters.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    for (int i = 0; i < parameters.Length; i++)
-                    {
-                        parameters[i] = parameters[i].Trim();
-                    }
-
-                    cd2 = this.DeleteAirTicket(parameters[0]);
+                    result = this.DeleteAirTicket(parameters[0]);
                     break;
                 case "AddTrain":
-                    allParameters = line.Substring(firstSpaceIndex + 1);
-                    parameters = allParameters.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    for (int i = 0; i < parameters.Length; i++)
-                    {
-                        parameters[i] = parameters[i].Trim();
-                    }
-
-                    cd2 = this.AddTrainTicket(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4]);
+                    result = this.AddTrainTicket(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4]);
                     break;
                 case "DeleteTrain":
-                    allParameters = line.Substring(firstSpaceIndex + 1);
-                    parameters = allParameters.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    for (int i = 0; i < parameters.Length; i++)
-                    {
-                        parameters[i] = parameters[i].Trim();
-                    }
-
-                    cd2 = this.DeleteTrainTicket(parameters[0], parameters[1], parameters[2]);
+                    result = this.DeleteTrainTicket(parameters[0], parameters[1], parameters[2]);
                     break;
                 case "AddBus":
-                    allParameters = line.Substring(firstSpaceIndex + 1);
-                    parameters = allParameters.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    for (int i = 0; i < parameters.Length; i++)
-                    {
-                        parameters[i] = parameters[i].Trim();
-                    }
-
-                    cd2 = this.basKaTicketKaIzafah(
+                    result = this.AddBusTiket(
                         parameters[0], 
                         parameters[1], 
                         parameters[2], 
@@ -405,38 +373,17 @@
                         parameters[4]);
                     break;
                 case "DeleteBus":
-                    allParameters = line.Substring(firstSpaceIndex + 1);
-                    parameters = allParameters.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    for (int i = 0; i < parameters.Length; i++)
-                    {
-                        parameters[i] = parameters[i].Trim();
-                    }
-
-                    cd2 = this.DeleteBusTicket(parameters[0], parameters[1], parameters[2], parameters[3]);
+                    result = this.DeleteBusTicket(parameters[0], parameters[1], parameters[2], parameters[3]);
                     break;
                 case "FindTickets":
-                    allParameters = line.Substring(firstSpaceIndex + 1);
-                    parameters = allParameters.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    for (int i = 0; i < parameters.Length; i++)
-                    {
-                        parameters[i] = parameters[i].Trim();
-                    }
-
-                    cd2 = this.FindTickets(parameters[0], parameters[1]);
+                    result = this.FindTickets(parameters[0], parameters[1]);
                     break;
                 case "FindTicketsInInterval":
-                    allParameters = line.Substring(firstSpaceIndex + 1);
-                    parameters = allParameters.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    for (int i = 0; i < parameters.Length; i++)
-                    {
-                        parameters[i] = parameters[i].Trim();
-                    }
-
-                    cd2 = this.findTicketsInInterval(parameters[0], parameters[1]);
+                    result = this.FindTicketsInInterval(parameters[0], parameters[1]);
                     break;
             }
 
-            return cd2;
+            return result;
         }
     }
 }
