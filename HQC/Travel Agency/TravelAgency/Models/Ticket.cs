@@ -6,14 +6,19 @@
     public abstract class Ticket : IComparable<Ticket>
     {
         public abstract string Type { get; }
-        public virtual string From { get; set; }
-        public virtual string To { get; set; }
-        public virtual string Company { get; set; }
-        public virtual DateTime DateAndTime { get; set; }
 
-        public virtual decimal Price { get; set; }
+        public string From { get; set; }
 
-        public virtual decimal SpecialPrice { get; set; }
+        public string To { get; set; }
+
+        public string Company { get; set; }
+
+        public DateTime DateAndTime { get; set; }
+        
+        public decimal Price { get; set; }
+
+        public decimal SpecialPrice { get; set; }
+
         public abstract string MunfaridKuleed { get; }
 
         public string FromToKey

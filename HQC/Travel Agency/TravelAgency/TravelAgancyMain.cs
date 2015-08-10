@@ -6,9 +6,11 @@
 
     public class TravelAgencyMain
     {
-        private static void Main()
+        private static readonly TicketCatalog TicketCatalog = new TicketCatalog();
+        private static readonly Engine Engine = new Engine(TicketCatalog);
+
+        public static void Main()
         {
-            Engine engine = new Engine();
             while (true)
             {
                 string line = Console.ReadLine();
@@ -18,7 +20,7 @@
                 }
 
                 line = line.Trim();
-                string commandResult = engine.ExecuteCommand(line);
+                string commandResult = Engine.ExecuteCommand(line);
                 if (commandResult != null)
                 {
                     Console.WriteLine(commandResult);

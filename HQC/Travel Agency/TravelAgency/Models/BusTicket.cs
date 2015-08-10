@@ -1,20 +1,14 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BusTicket.cs" company="">
-//   
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
-namespace TravelAgency.Models
+﻿namespace TravelAgency.Models
 {
     using System;
 
     public class BusTicket : Ticket
     {
-        public BusTicket(string from, string to, string Sayahat_ki_Tanzeem, string dt, string pp)
+        public BusTicket(string from, string to, string travelCompany, string dt, string pp)
         {
             this.From = from;
             this.To = to;
-            this.Company = Sayahat_ki_Tanzeem;
+            this.Company = travelCompany;
             DateTime dateAndTime = ParseDateTime(dt);
 
             this.DateAndTime = dateAndTime;
@@ -22,11 +16,11 @@ namespace TravelAgency.Models
             this.Price = price;
         }
 
-        public BusTicket(string from, string to, string Sayahat_ki_Tanzeem, string dt)
+        public BusTicket(string from, string to, string travelCompany, string dt)
         {
             this.From = from;
             this.To = to;
-            this.Company = Sayahat_ki_Tanzeem;
+            this.Company = travelCompany;
 
             DateTime dateAndTime = ParseDateTime(dt);
             this.DateAndTime = dateAndTime;

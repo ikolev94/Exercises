@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Core\TicketCatalog.cs" />
     <Compile Include="Enums\TicketType.cs" />
     <Compile Include="Interfaces\ITicketCatalog.cs" />
     <Compile Include="Models\AirTicket.cs" />
