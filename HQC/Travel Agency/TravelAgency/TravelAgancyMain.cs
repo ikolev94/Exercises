@@ -19,10 +19,10 @@
                     break;
                 }
 
-                line = line.Trim();
-                string commandResult = Engine.ExecuteCommand(line);
-                if (commandResult != null)
+                if (!string.IsNullOrEmpty(line))
                 {
+                    line = line.Trim();
+                    string commandResult = Engine.ExecuteCommand(line);
                     Console.WriteLine(commandResult);
                 }
             }

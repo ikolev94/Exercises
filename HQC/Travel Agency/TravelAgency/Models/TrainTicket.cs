@@ -6,7 +6,7 @@
 
     public class TrainTicket : Ticket
     {
-        public TrainTicket(string from, string to, DateTime dateAndTime, decimal price,decimal studentPrice)
+        public TrainTicket(string from, string to, DateTime dateAndTime, decimal price, decimal studentPrice)
             : base(TicketType.Train, from, to, dateAndTime, price)
         {
             this.StudentPrice = studentPrice;
