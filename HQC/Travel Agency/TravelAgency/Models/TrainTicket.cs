@@ -2,43 +2,19 @@
 {
     using System;
 
+    using TravelAgency.Enums;
+
     public class TrainTicket : Ticket
     {
-        public TrainTicket(string from, string to, string dt, string pp, string studentpp)
+        public TrainTicket(string from, string to, DateTime dateAndTime, decimal price,decimal studentPrice)
+            : base(TicketType.Train, from, to, dateAndTime, price)
         {
-            this.From = from;
-            this.To = to;
-            DateTime dateAndTime = ParseDateTime(dt);
-
-            this.DateAndTime = dateAndTime;
-            decimal price = decimal.Parse(pp);
-
-            this.Price = price;
-            decimal studentPrice = decimal.Parse(studentpp);
-
             this.StudentPrice = studentPrice;
-        }
-
-        public TrainTicket(string from, string to, string dt)
-        {
-            this.From = from;
-            this.To = to;
-            DateTime dateAndTime = ParseDateTime(dt);
-
-            this.DateAndTime = dateAndTime;
         }
 
         public decimal StudentPrice { get; set; }
 
-        public override string Type
-        {
-            get
-            {
-                return "train";
-            }
-        }
-
-        public override string MunfaridKuleed
+        public override string UniqueKey
         {
             get
             {

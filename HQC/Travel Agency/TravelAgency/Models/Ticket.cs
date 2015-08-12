@@ -3,23 +3,30 @@
     using System;
     using System.Globalization;
 
+    using TravelAgency.Enums;
+
     public abstract class Ticket : IComparable<Ticket>
     {
-        public abstract string Type { get; }
+        protected Ticket(TicketType ticketType,string from,string to,DateTime dateAndTime, decimal price)
+        {
+            this.Type = ticketType;
+            this.From = from;
+            this.To = to;
+            this.DateAndTime = dateAndTime;
+            this.Price = price;
+        }
 
-        public string From { get; set; }
+        public TicketType Type { get; private set; }
 
-        public string To { get; set; }
+        public string From { get; private set; }
 
-        public string Company { get; set; }
+        public string To { get; private set; }
 
-        public DateTime DateAndTime { get; set; }
+        public DateTime DateAndTime { get; private set; }
         
-        public decimal Price { get; set; }
+        public decimal Price { get; private set; }
 
-        public decimal SpecialPrice { get; set; }
-
-        public abstract string MunfaridKuleed { get; }
+        public abstract string UniqueKey { get; }
 
         public string FromToKey
         {
@@ -47,9 +54,8 @@
 
         public override string ToString()
         {
-            string input = "[" + this.DateAndTime.ToString("dd.MM.yyyy HH:mm") + "; " + this.Type + "; "
+            return "[" + this.DateAndTime.ToString("dd.MM.yyyy HH:mm") + "; " + this.Type.ToString().ToLower() + "; "
                            + string.Format("{0:f2}", this.Price) + "]";
-            return input;
         }
 
         public static string CreateFromToKey(string from, string to)

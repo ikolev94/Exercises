@@ -2,37 +2,28 @@
 {
     using System;
 
+    using TravelAgency.Enums;
+
     public class AirTicket : Ticket
     {
-        public AirTicket(string flightNumber, string from, string to, string airline, string dateAndTime, string price)
+        public AirTicket(string from, string to, DateTime dateAndTime, decimal price, string flightNumber, string airline)
+            : base(TicketType.Air, from, to, dateAndTime, price)
         {
+            this.Airline = airline;
             this.FlightNumber = flightNumber;
-            this.From = from;
-            this.To = to;
-
-            this.Company = airline;
-            DateTime dateAndTimeHelp = ParseDateTime(dateAndTime);
-            this.DateAndTime = dateAndTimeHelp;
-            this.Price = decimal.Parse(price);
-            
         }
 
         public AirTicket(string flightNumber)
+            : this(null, null, default(DateTime), 0, flightNumber, null)
         {
             this.FlightNumber = flightNumber;
         }
 
-        public string FlightNumber { get; set; }
+        public string Airline { get; private set; }
 
-        public override string Type
-        {
-            get
-            {
-                return "air";
-            }
-        }
+        public string FlightNumber { get; private set; }
 
-        public override string MunfaridKuleed
+        public override string UniqueKey
         {
             get
             {

@@ -62,57 +62,57 @@
             }
         }
 
-        public string AddAirTicket(
-            string flightNumber, 
-            string from, 
-            string to, 
-            string airline, 
-            DateTime dateTime, 
-            decimal price)
-        {
-            return this.AddAirTicket(
-                flightNumber, 
-                from, 
-                to, 
-                airline, 
-                dateTime.ToString("dd.MM.yyyy HH:mm"), 
-                price.ToString());
-        }
+        //public string AddAirTicket(
+        //    string flightNumber, 
+        //    string from, 
+        //    string to, 
+        //    string airline, 
+        //    DateTime dateTime, 
+        //    decimal price)
+        //{
+        //    return this.AddAirTicket(
+        //        flightNumber, 
+        //        from, 
+        //        to, 
+        //        airline, 
+        //        dateTime.ToString("dd.MM.yyyy HH:mm"), 
+        //        price.ToString());
+        //}
 
         string ITicketCatalog.DeleteAirTicket(string flightNumber)
         {
             return this.DeleteAirTicket(flightNumber);
         }
 
-        public string AddTrainTicket(string from, string to, DateTime dateTime, decimal price, decimal studentPrice)
-        {
-            return this.AddTrainTicket(
-                from, 
-                to, 
-                dateTime.ToString("dd.MM.yyyy HH:mm"), 
-                price.ToString(), 
-                studentPrice.ToString());
-        }
+        //public string AddTrainTicket(string from, string to, DateTime dateTime, decimal price, decimal studentPrice)
+        //{
+        //    return this.AddTrainTicket(
+        //        from,
+        //        to,
+        //        dateTime.ToString("dd.MM.yyyy HH:mm"),
+        //        price.ToString(),
+        //        studentPrice.ToString());
+        //}
 
-        public string DeleteTrainTicket(string from, string to, DateTime dateTime)
-        {
-            return this.DeleteTrainTicket(from, to, dateTime.ToString("dd.MM.yyyy HH:mm"));
-        }
+        //public string DeleteTrainTicket(string from, string to, DateTime dateTime)
+        //{
+        //    return this.DeleteTrainTicket(from, to, dateTime.ToString("dd.MM.yyyy HH:mm"));
+        //}
 
-        public string AddBusTicket(string from, string to, string travelCompany, DateTime dateTime, decimal price)
-        {
-            return this.AddBusTiket(
-                from, 
-                to, 
-                travelCompany, 
-                dateTime.ToString("dd.MM.yyyy HH:mm"), 
-                price.ToString());
-        }
+        //public string AddBusTicket(string from, string to, string travelCompany, DateTime dateTime, decimal price)
+        //{
+        //    return this.AddBusTicket(
+        //        from,
+        //        to,
+        //        travelCompany,
+        //        dateTime.ToString("dd.MM.yyyy HH:mm"),
+        //        price.ToString());
+        //}
 
-        public string DeleteBusTicket(string from, string to, string travelCompany, DateTime dateTime)
-        {
-            return this.DeleteBusTicket(from, to, travelCompany, dateTime.ToString("dd.MM.yyyy HH:mm"));
-        }
+        //public string DeleteBusTicket(string from, string to, string travelCompany, DateTime dateTime)
+        //{
+        //    return this.DeleteBusTicket(from, to, travelCompany, dateTime.ToString("dd.MM.yyyy HH:mm"));
+        //}
 
         public int GetTicketsCount(TicketType type)
         {
@@ -146,7 +146,7 @@
 
         public string AddTicket(Ticket ticket)
         {
-            string key = ticket.MunfaridKuleed;
+            string key = ticket.UniqueKey;
             if (this.Dict.ContainsKey(key))
             {
                 return "Duplicate ticket";
@@ -164,7 +164,7 @@
 
         public string DeleteTicket(Ticket ticket)
         {
-            string key = ticket.MunfaridKuleed;
+            string key = ticket.UniqueKey;
             if (this.Dict.ContainsKey(key))
             {
                 ticket = this.Dict[key];
@@ -181,9 +181,9 @@
             }
         }
 
-        public string AddAirTicket(string flightNumber, string from, string to, string airline, string dateAndTime, string price)
+        public string AddAirTicket(string flightNumber, string from, string to, string airline, DateTime dateAndTime, decimal price)
         {
-            AirTicket ticket = new AirTicket(flightNumber, from, to, airline, dateAndTime, price);
+            AirTicket ticket = new AirTicket(from, to, dateAndTime, price, flightNumber, airline);
 
             string result = this.AddTicket(ticket);
             if (result.Contains("added"))
@@ -207,7 +207,7 @@
             return result;
         }
 
-        public string AddTrainTicket(string from, string to, string dateAndTime, string regularPrice, string studentPrice)
+        public string AddTrainTicket(string from, string to, DateTime dateAndTime, decimal regularPrice, decimal studentPrice)
         {
             TrainTicket ticket = new TrainTicket(from, to, dateAndTime, regularPrice, studentPrice);
 
@@ -220,9 +220,9 @@
             return result;
         }
 
-        public string DeleteTrainTicket(string from, string to, string dateAndTime)
+        public string DeleteTrainTicket(string from, string to, DateTime dateAndTime)
         {
-            TrainTicket ticket = new TrainTicket(from, to, dateAndTime);
+            TrainTicket ticket = new TrainTicket(from, to, dateAndTime, 0, 0);
             string result = this.DeleteTicket(ticket);
 
             if (result.Contains("deleted"))
@@ -233,10 +233,10 @@
             return result;
         }
 
-        public string AddBusTiket(string from, string to, string travelCompany, string dateAndTime, string price)
+        public string AddBusTicket(string from, string to, string travelCompany, DateTime dateTime, decimal price)
         {
-            BusTicket ticket = new BusTicket(from, to, travelCompany, dateAndTime, price);
-            string key = ticket.MunfaridKuleed;
+            BusTicket ticket = new BusTicket(from, to, dateTime, price,travelCompany);
+            string key = ticket.UniqueKey;
             string result;
 
             if (this.Dict.ContainsKey(key))
@@ -261,9 +261,9 @@
             return result;
         }
 
-        public string DeleteBusTicket(string from, string to, string travelCompany, string dateAndTime)
+        public string DeleteBusTicket(string from, string to, string travelCompany, DateTime dateAndTime)
         {
-            BusTicket ticket = new BusTicket(from, to, travelCompany, dateAndTime);
+            BusTicket ticket = new BusTicket(from, to, dateAndTime, 0, travelCompany);
             string result = this.DeleteTicket(ticket);
 
             if (result.Contains("deleted"))
