@@ -3,8 +3,9 @@
     using System;
 
     using TravelAgency.Enums;
+    using TravelAgency.Interfaces;
 
-    public abstract class Ticket : IComparable<Ticket>
+    public abstract class Ticket : ITicket 
     {
         protected Ticket(TicketType ticketType, string from, string to, DateTime dateAndTime, decimal price)
         {
@@ -37,18 +38,18 @@
 
         public int CompareTo(Ticket otherTicket)
         {
-            int nateeja = this.DateAndTime.CompareTo(otherTicket.DateAndTime);
-            if (nateeja == 0)
+            int compareToResult = this.DateAndTime.CompareTo(otherTicket.DateAndTime);
+            if (compareToResult == 0)
             {
-                nateeja = this.Type.CompareTo(otherTicket.Type);
+                compareToResult = this.Type.CompareTo(otherTicket.Type);
             }
 
-            if (nateeja == 0)
+            if (compareToResult == 0)
             {
-                nateeja = this.Price.CompareTo(otherTicket.Price);
+                compareToResult = this.Price.CompareTo(otherTicket.Price);
             }
 
-            return nateeja;
+            return compareToResult;
         }
 
         public override string ToString()

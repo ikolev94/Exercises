@@ -13,12 +13,6 @@
             this.FlightNumber = flightNumber;
         }
 
-        public AirTicket(string flightNumber)
-            : this(null, null, default(DateTime), 0, flightNumber, null)
-        {
-            this.FlightNumber = flightNumber;
-        }
-
         public string Airline { get; private set; }
 
         public string FlightNumber { get; private set; }

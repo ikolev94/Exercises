@@ -69,43 +69,6 @@
             }
         }
 
-        public string AddTicket(Ticket ticket)
-        {
-            string key = ticket.UniqueKey;
-            if (this.ticketesByUniqueKey.ContainsKey(key))
-            {
-                return "Duplicate ticket";
-            }
-            else
-            {
-                this.ticketesByUniqueKey.Add(key, ticket);
-                string fromToKey = ticket.FromToKey;
-
-                this.ticketsByFromToKey.Add(fromToKey, ticket);
-                this.ticketsByDate.Add(ticket.DateAndTime, ticket);
-                return "Ticket added";
-            }
-        }
-
-        public string DeleteTicket(Ticket ticket)
-        {
-            string key = ticket.UniqueKey;
-            if (this.ticketesByUniqueKey.ContainsKey(key))
-            {
-                ticket = this.ticketesByUniqueKey[key];
-                this.ticketesByUniqueKey.Remove(key);
-                string fromToKey = ticket.FromToKey;
-
-                this.ticketsByFromToKey.Remove(fromToKey, ticket);
-                this.ticketsByDate.Remove(ticket.DateAndTime, ticket);
-                return "Ticket deleted";
-            }
-            else
-            {
-                return "Ticket does not exist";
-            }
-        }
-
         public string AddAirTicket(string flightNumber, string from, string to, string airline, DateTime dateAndTime, decimal price)
         {
             AirTicket ticket = new AirTicket(from, to, dateAndTime, price, flightNumber, airline);
@@ -121,7 +84,7 @@
 
         public string DeleteAirTicket(string flightNumber)
         {
-            AirTicket ticket = new AirTicket(flightNumber);
+            AirTicket ticket = new AirTicket(null, null, default(DateTime), 0, flightNumber, null);
 
             string result = this.DeleteTicket(ticket);
             if (result.Contains("deleted"))
@@ -161,23 +124,8 @@
         public string AddBusTicket(string from, string to, string travelCompany, DateTime dateTime, decimal price)
         {
             BusTicket ticket = new BusTicket(from, to, dateTime, price, travelCompany);
-            string key = ticket.UniqueKey;
-            string result;
 
-            if (this.ticketesByUniqueKey.ContainsKey(key))
-            {
-                result = "Duplicate ticket";
-            }
-            else
-            {
-                this.ticketesByUniqueKey.Add(key, ticket);
-                string fromToKey = ticket.FromToKey;
-
-                this.ticketsByFromToKey.Add(fromToKey, ticket);
-                this.ticketsByDate.Add(ticket.DateAndTime, ticket);
-                result = "Ticket added";
-            }
-
+            string result = this.AddTicket(ticket);
             if (result.Contains("added"))
             {
                 this.busTicketsCount++;
@@ -199,11 +147,46 @@
             return result;
         }
 
-        public string ReadTickets(ICollection<Ticket> tickets)
+        public string ReadTickets(IEnumerable<Ticket> tickets)
         {
-            var sortedTickets = new List<Ticket>(tickets);
-            sortedTickets.Sort();
-            return string.Join(" ", sortedTickets);
+            return string.Join(" ", tickets.OrderBy(t => t));
+        }
+
+        private string AddTicket(Ticket ticket)
+        {
+            string key = ticket.UniqueKey;
+            if (this.ticketesByUniqueKey.ContainsKey(key))
+            {
+                return "Duplicate ticket";
+            }
+            else
+            {
+                this.ticketesByUniqueKey.Add(key, ticket);
+                string fromToKey = ticket.FromToKey;
+
+                this.ticketsByFromToKey.Add(fromToKey, ticket);
+                this.ticketsByDate.Add(ticket.DateAndTime, ticket);
+                return "Ticket added";
+            }
+        }
+
+        private string DeleteTicket(Ticket ticket)
+        {
+            string key = ticket.UniqueKey;
+            if (this.ticketesByUniqueKey.ContainsKey(key))
+            {
+                ticket = this.ticketesByUniqueKey[key];
+                this.ticketesByUniqueKey.Remove(key);
+                string fromToKey = ticket.FromToKey;
+
+                this.ticketsByFromToKey.Remove(fromToKey, ticket);
+                this.ticketsByDate.Remove(ticket.DateAndTime, ticket);
+                return "Ticket deleted";
+            }
+            else
+            {
+                return "Ticket does not exist";
+            }
         }
     }
 }
