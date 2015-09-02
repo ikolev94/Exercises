@@ -16,13 +16,26 @@ public class ActivityTracker {
                 playersByMount.put(mount, new TreeMap<>());
             }
             if (!playersByMount.get(mount).containsKey(name)) {
-                playersByMount.get(mount).put(name,distanceToAdd);
+                playersByMount.get(mount).put(name, distanceToAdd);
             } else {
                 distanceToAdd += playersByMount.get(mount).get(name);
                 playersByMount.get(mount).put(name, distanceToAdd);
             }
-
         }
 
+        for (Integer mount : playersByMount.keySet()) {
+            System.out.printf("%d: ", mount);
+            TreeMap<String, Float> player = playersByMount.get(mount);
+            boolean isItFirstPlayer = true;
+            for (String name : player.keySet()) {
+                if (isItFirstPlayer) {
+                    System.out.printf("%s(%.0f)", name, player.get(name));
+                    isItFirstPlayer = false;
+                } else {
+                    System.out.printf(", %s(%.0f)", name, player.get(name));
+                }
+            }
+            System.out.println();
+        }
     }
 }
