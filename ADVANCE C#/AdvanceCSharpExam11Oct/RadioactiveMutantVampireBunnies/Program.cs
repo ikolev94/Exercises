@@ -30,22 +30,32 @@
                 int oldPlayerCol = playerCol;
                 switch (command)
                 {
-                    case 'U': playerRow--; break;
-                    case 'D': playerRow++; break;
-                    case 'L': playerCol--; break;
-                    case 'R': playerCol++; break;
+                    case 'U':
+                        playerRow--;
+                        break;
+                    case 'D':
+                        playerRow++;
+                        break;
+                    case 'L':
+                        playerCol--;
+                        break;
+                    case 'R':
+                        playerCol++;
+                        break;
                 }
 
                 matrix = SpreadBunnies(matrix);
-                if (matrix[playerRow][playerCol] == 'B')
+
+                if (playerRow < 0 || playerRow >= matrix.Length || playerCol < 0
+                    || playerCol >= matrix[playerRow].Length)
                 {
-                    PrintMatrix(matrix, playerRow, playerCol, "dead");
+                    PrintMatrix(matrix, oldPlayerRow, oldPlayerCol, "won");
                     return;
                 }
 
-                if (playerRow < 0 || playerRow >= matrix.Length || playerCol < 0 || playerCol >= matrix[playerRow].Length)
+                if (matrix[playerRow][playerCol] == 'B')
                 {
-                    PrintMatrix(matrix, oldPlayerRow, oldPlayerCol, "win");
+                    PrintMatrix(matrix, playerRow, playerCol, "dead");
                     return;
                 }
             }
@@ -53,9 +63,9 @@
 
         private static void PrintMatrix(char[][] matrix, int row, int col, string result)
         {
-            foreach (char[] c in matrix)
+            foreach (char[] line in matrix)
             {
-                foreach (var ch in c)
+                foreach (var ch in line)
                 {
                     Console.Write(ch);
                 }
@@ -80,13 +90,25 @@
                 {
                     if (matrix[i][j] == 'B')
                     {
-                        if (i - 1 >= 0) newMatrix[i - 1][j] = 'B';
+                        if (i - 1 >= 0)
+                        {
+                            newMatrix[i - 1][j] = 'B';
+                        }
 
-                        if (i + 1 < matrix.Length) newMatrix[i + 1][j] = 'B';
+                        if (i + 1 < matrix.Length)
+                        {
+                            newMatrix[i + 1][j] = 'B';
+                        }
 
-                        if (j - 1 >= 0) newMatrix[i][j - 1] = 'B';
+                        if (j - 1 >= 0)
+                        {
+                            newMatrix[i][j - 1] = 'B';
+                        }
 
-                        if (j + 1 < matrix[i].Length) newMatrix[i][j + 1] = 'B';
+                        if (j + 1 < matrix[i].Length)
+                        {
+                            newMatrix[i][j + 1] = 'B';
+                        }
                     }
                 }
             }
