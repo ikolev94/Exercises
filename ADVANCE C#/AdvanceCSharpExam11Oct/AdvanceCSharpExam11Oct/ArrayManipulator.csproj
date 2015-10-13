@@ -7,8 +7,8 @@
     <ProjectGuid>{984D1B3D-451A-4102-AF1D-7681186FE297}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AdvanceCSharpExam11Oct</RootNamespace>
-    <AssemblyName>AdvanceCSharpExam11Oct</AssemblyName>
+    <RootNamespace>ArrayManipulator</RootNamespace>
+    <AssemblyName>ArrayManipulator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
