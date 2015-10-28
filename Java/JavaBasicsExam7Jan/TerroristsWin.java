@@ -12,13 +12,11 @@ public class TerroristsWin {
             if (currentLetter == '|' ) {
                 bombFirstSymbolIndex = i;
                 i++;
-                if (i >= text.length) break;
-                String bomb = "";
+                StringBuilder bomb = new StringBuilder();
                 while (text[i] != '|' ) {
-                    bomb += text[i++];
-                    if (i >= text.length) break;
+                    bomb.append(text[i++]);
                 }
-                int bombPower = bombPowerCalculator(bomb);
+                int bombPower = bombPowerCalculator(bomb.toString());
                 bombLastSymbolIndex = i + bombPower;
                 bombFirstSymbolIndex = bombFirstSymbolIndex - bombPower;
                 for (int j = Math.max(bombFirstSymbolIndex, 0); j <= bombLastSymbolIndex && j < text.length; j++) {
@@ -28,7 +26,6 @@ public class TerroristsWin {
 
         }
         System.out.println(text);
-
     }
 
     private static int bombPowerCalculator(String bomb) {
