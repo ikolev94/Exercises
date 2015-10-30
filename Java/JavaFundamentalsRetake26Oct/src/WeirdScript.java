@@ -13,16 +13,14 @@ public class WeirdScript {
         String key = "" + keyChar + keyChar;
         StringBuilder text = new StringBuilder();
         String line;
-        Pattern pattern = Pattern.compile(key + "(.+?)" + key);
         while (!(line = scanner.nextLine()).equals("End")) {
             text.append(line);
         }
 
+        Pattern pattern = Pattern.compile(key + "(.*?)" + key);
         Matcher matcher = pattern.matcher(text.toString());
         while (matcher.find()) {
-            if (matcher.group(1).length() > 0) {
-                System.out.println(matcher.group(1));
-            }
+            System.out.println(matcher.group(1));
         }
 
     }
