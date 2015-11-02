@@ -4,32 +4,36 @@ using namespace std;
 
 const double Pi = 3.1415926535897932;
 
-// Дефиниция на класа
 class Robot
 {
 public:
-	Robot();                     // конструктор
-	void move(double distance);  // придвижва робота на определено разстояние
-	void turn(double angle);     // завърта посоката на движение
-	double getX();               // връща текущата координата x
-	double getY();               // връща текущата координата y
-	double getDirection();       // връща текущата посока
+	Robot();
+	void move(double distance);
+	void turn(double angle);
+	double getX();
+	double getY();
+	double getDirection();
+	double getTotalDistance();
+	double distTo(Robot robot);
 private:
-	double x, y, // координати
-		dir;  // посока на движение (в ъглови градуси)
+	double x, y,
+		totalDistance,
+		dir;
 };
 
-// Дефиниции на методите
 Robot::Robot()
 {
-	dir = x = y = 0;
+	dir = x = y = totalDistance = 0;
+}
+
+double Robot::distTo(Robot robot)
+{
+	return sqrt((robot.getX() - x)*(robot.getX() - x) + (robot.getY() - y)*(robot.getY() - y));
 }
 
 void Robot::turn(double angle)
-// angle е ъгъл на завъртане наляво в градуси. При стойност <0 завоят е надясно
 {
 	dir += angle;
-	// За да може посоката да бъде винаги в интервала от 0 до 360 градуса:
 	dir = fmod(dir, 360.0);
 	if (dir < 0)
 		dir += 360.0;
@@ -37,9 +41,15 @@ void Robot::turn(double angle)
 
 void Robot::move(double distance)
 {
-	double dir_rad = dir / 180.0 * Pi; // посока в радиани (нужно за sin и cos)
+	totalDistance += distance;
+	double dir_rad = dir / 180.0 * Pi;
 	x += distance * cos(dir_rad);
 	y += distance * sin(dir_rad);
+}
+
+double Robot::getTotalDistance()
+{
+	return totalDistance;
 }
 
 double Robot::getX()
@@ -57,10 +67,8 @@ double Robot::getDirection()
 	return dir;
 }
 
-//---------------------------------------------------------------------------
 
 void printStates(Robot * r, int n)
-// Изписва на екрана състоянието на роботите в масива r, които са n на брой
 {
 	for (int i = 0; i < n; i++)
 		cout << "Robot " << i + 1 << ": x = " << r[i].getX()
@@ -73,12 +81,10 @@ int main(int argc, char* argv[])
 {
 	cout << "hello\n";
 
-	// Инициализация
 	const int nRobots = 3;
 	Robot r[nRobots];
 	printStates(r, nRobots);
 
-	// Цикъл за четене и изпълнение на команди от клавиатурата
 	char command;
 	do
 	{
@@ -86,38 +92,66 @@ int main(int argc, char* argv[])
 		switch (command)
 		{
 		case 's':
-			// Изход
 			break;
 		case 'm':
-			// Движение
 		{
 					int robotID;
 					double distance;
 					cin >> robotID >> distance;
 					if (robotID < 1 || robotID > nRobots)
-						cout << "Greshen nomer na robot!\n";
+						cout << "Wrong robot ID!\n";
 					else
 						r[robotID - 1].move(distance);
 					break;
 		}
 		case 't':
-			// Завой на място
 		{
 					int robotID;
 					double angle;
 					cin >> robotID >> angle;
 					if (robotID < 1 || robotID > nRobots)
-						cout << "Greshen nomer na robot!\n";
+						cout << "Wrong robot ID!\n";
 					else
 						r[robotID - 1].turn(angle);
 					break;
 		}
+		case'd':
+		{
+				   int robotID;
+				   cin >> robotID;
+				   if (robotID<1 || robotID>nRobots)
+					   cout << "Wrong robot ID!\n";
+				   else
+				   {
+					   cout << "Robot number "
+						    << robotID
+						    << " has gone "
+						    << r[robotID - 1].getTotalDistance()
+						    << " meters"
+						    << endl;
+				   }
+				   break;
+		}
+		case'b':
+		{
+				   int firstRobotID, secondRobotID;
+				   cin >> firstRobotID >> secondRobotID;
+				   if (firstRobotID<1 || firstRobotID>nRobots || secondRobotID<1 || secondRobotID>nRobots)
+					   cout << "Wrong robot ID!\n";
+				   else
+				   {
+					   cout << "The distance between the two robots is "
+						   << r[firstRobotID - 1].distTo(r[secondRobotID - 1])
+						   << " meters"
+						   << endl;
+				   }
+				   break;
+		}
 		default:
-			cout << "Greshna komanda!\n";
+			cout << "Wrong command!\n";
 		}
 		printStates(r, nRobots);
 	} while (command != 's');
 	cout << "goodbye\n";
 	return 0;
 }
-//---------------------------------------------------------------------------
