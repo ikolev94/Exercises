@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{671ECA5A-164A-4F4A-8D1E-125A10ADC96E}</ProjectGuid>
+    <ProjectGuid>{56D4D966-31DB-4181-A9AF-CEA17336318E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Robot_ConsoleApplication</RootNamespace>
   </PropertyGroup>
@@ -76,7 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Downloads\robot.cpp" />
+    <ClCompile Include="robot.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

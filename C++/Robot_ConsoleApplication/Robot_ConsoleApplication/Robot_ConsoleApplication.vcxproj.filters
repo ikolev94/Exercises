@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Downloads\robot.cpp">
+    <ClCompile Include="robot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
