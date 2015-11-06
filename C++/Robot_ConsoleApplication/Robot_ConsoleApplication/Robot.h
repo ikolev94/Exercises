@@ -5,12 +5,13 @@ class Robot
 {
 public:
 	Robot();
+	~Robot();
 	void move(double distance);
 	void turn(double angle);
-	double getX();
-	double getY();
-	double getDirection();
-	double getTotalDistance();
+	double getX() const;
+	double getY() const;
+	double getDirection() const;
+	double getTotalDistance() const;
 	double distTo(Robot robot);
 private:
 	double x, y,
