@@ -1,0 +1,214 @@
+body{
+    background-color: #0542FF;
+    font-family: Arial, sans-serif;
+}
+
+#wrapper{
+    margin: 10px auto;
+    width: 960px;
+    height: 600px;
+
+}
+
+header{
+    height: 100px;
+}
+
+main{
+    height: 500px;
+    background-color: #4a9ecb;
+}
+
+footer{
+    height: 100px;
+}
+
+#logo > a > img {
+    height: 100px;
+}
+
+#logo{
+    display: inline-block;
+}
+
+nav{
+    position: absolute;
+    top: 63px;
+    font-family: Arial, sans-serif;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+}
+
+nav > ul > li{
+    padding: 5px 0;
+    margin: 0 28px;
+    display: inline-block;
+}
+nav > ul > li:hover{
+    background-color: white;
+    color: #0542FF;
+    border-radius: 5px;
+}
+section{
+    display: inline-block;
+    color: white;
+}
+#footer-links{
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0 0 10px ;
+}
+#footer-links > li{
+    padding-bottom: 5px;
+}
+footer > section:nth-child(1) {
+    width: 20%;
+    vertical-align: top;
+}
+#copy-rights {
+    width: 60%;
+}
+#copy-rights > p:nth-child(1){
+    padding-top: 5px;
+    margin: 0;
+    text-align: center;
+}
+#copy-rights > p:nth-child(2){
+    text-align: center;
+}
+#social-web {
+    padding-left: 15px;
+    padding-top: 50px;
+    vertical-align: top;
+}
+.sprite {
+    background: url("../Resources/images/mini-social-icons.png");
+    border-radius: 50%;
+    border: 2px solid grey;
+}
+#facebook:hover {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-position: -1px -43px;
+}
+#google:hover {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-position: -42px -42px;
+}
+#twitter:hover {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-position: -84px -43px;
+}
+#facebook {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-position: -1px -1px;
+}
+#google {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-position: -42px 0;
+}
+#twitter {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-position: -84px -1px;
+}
+#group-table{
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+}
+table {
+    color: white;
+    border-spacing: 0;
+    padding: 10px 0 0 15px;
+}
+td {
+    border-right: 2px solid white;
+    border-top: 2px solid white;
+}
+#group-table > table > tbody > tr:nth-child(1) {
+    background-color: rgba(142, 0, 247, 0.1);
+}
+#group-table > table > tbody > tr:nth-child(2) {
+    background-color: rgba(142, 0, 247, 0.3);
+}
+#group-table > table > tbody > tr:nth-child(3) {
+    background-color: rgba(142, 0, 247, 0.6);
+}
+#group-table > table > tbody > tr:nth-child(4) {
+    background-color: rgba(142, 0, 247, 0.9);
+}
+table > tbody > tr:nth-child(4) > td {
+    border-bottom: 2px solid white;
+}
+th{
+    font-size: 0.8em;
+}
+td{
+    padding: 5px 10px;
+}
+#group-table > table > tbody > tr > td:nth-child(2){
+    padding-right: 60px;
+}
+#group-table > table > tbody > tr > td:last-child{
+    text-align: center;
+    padding: 0 15px;
+}
+tbody > tr > td:first-child{
+    text-align: center;
+    border-left: 2px solid white;
+}
+.red{
+    color: red;
+}
+#reg-form{
+    color: white;
+    display: inline-block;
+    width: 45%;
+}
+
+label{
+    display: block;
+    text-align: center;
+    margin: 10px 0 0 5px;
+}
+input {
+    display: block;
+    margin: 0 auto;
+    border-radius: 13px;
+    background-color: #1614b8;
+    width: 75%;
+    height: 40px;
+    font-size: 1.3em;
+    color: white;
+}
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    text-align: center;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+}
+
+fieldset {
+    border: 2px solid #1614b8;
+}

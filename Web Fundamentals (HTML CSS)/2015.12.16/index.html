@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UEFA</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div id="logo">
+                <a href="http://www.uefa.com/">
+                    <img src="Resources/images/uefa-logo.png" alt="uefa-logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li>Home</li>
+                    <li>UEFA Champions League</li>
+                    <li>UEFA Europe League</li>
+                    <li>Team of the year</li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div id="group-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="6">Group E</th>
+                        </tr>
+                        <tr>
+                            <th>№</th>
+                            <th>Team</th>
+                            <th>W</th>
+                            <th>D</th>
+                            <th>L</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>FC Barcelona</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>AC Roma</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>2</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Bayer 04 Leverkusen</td>
+                            <td>1</td>
+                            <td>3</td>
+                            <td>2</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>FC BATE Borisov</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="reg-form">
+                <form action="">
+                    <fieldset>
+                    <legend>Register new sponsor</legend>
+                        <label for="company">Company<span class="red">*</span> </label>
+                        <input type="text" placeholder="Enter your company name" id="company" required>
+                        <label for="password">Password<span class="red">*</span> </label>
+                        <input type="password" id="password" required>
+                        <label for="confirm-password">Confirm password <span class="red">*</span> </label>
+                        <input type="password" id="confirm-password" required>
+                        <div id="not-required">
+                            <label for="country">Country</label>
+                            <select name="country" id="country">
+                                <optgroup label="Africa">
+                                    <option value="Chad">Chad</option>
+                                    <option value="Niger">Niger</option>
+                                </optgroup>
+                                <optgroup label="Asia">
+                                    <option value="China">China</option>
+                                    <option value="Japan">Japan</option>
+                                </optgroup>
+                                <optgroup label="Europa">
+                                    <option value="Bulgaria">Bulgaria</option>
+                                    <option value="England">England</option>
+                                    <option value="France">France</option>
+                                </optgroup>
+                            </select>
+                            <label for="business-field">Business field</label>
+                            <input type="checkbox">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </main>
+        <footer>
+            <section>
+                <ul id="footer-links">
+                    <li><a href="http://www.uefa.com/"></a>Home</li>
+                    <li><a href="http://www.uefa.com/"></a>UEFA Champions League</li>
+                    <li><a href="http://www.uefa.com/"></a>UEFA Europa League</li>
+                    <li><a href="http://www.uefa.com/"></a>Team of the year</li>
+                </ul>
+            </section>
+            <section id="copy-rights">
+                <p>© 1998-2015 UEFA. All rights reserved.</p>
+                   <p>
+                       The UEFA word, the UEFA logo and all marks related to UEFA competitions, are protected by
+                       trade marks and/or copyright of UEFA. No use for commercial purposes may be made of such
+                       trade marks. Use of UEFA.com signifies your agreement to the Terms and Conditions and Privacy
+                      Policy.
+                   </p>
+            </section>
+            <section id="social-web">
+                <div class="sprite" id="facebook"></div>
+                <div class="sprite" id="google"></div>
+                <div class="sprite" id="twitter"></div>
+            </section>
+        </footer>
+    </div>
+</body>
+</html>
