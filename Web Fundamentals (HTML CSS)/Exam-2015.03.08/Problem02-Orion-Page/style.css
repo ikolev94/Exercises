@@ -1,0 +1,175 @@
+@font-face {
+    font-family: 'Oleo Script';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Oleo Script'), local('OleoScript-Regular'),
+    url(http://fonts.gstatic.com/s/oleoscript/v5/_weQNDK6Uf40CiGFKBBUjobN6UDyHWBl620a-IRfuBk.woff)
+    format('woff');
+}
+
+body {
+    font-family: Calibri, Arial,sans-serif;
+    font-size: 12px;
+    background-color: #50247D;
+}
+#wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+header {
+    background-image: url("02.OrionPage-resources/orion-gas-and-star-bgr.jpg");
+    background-repeat: no-repeat;
+    text-align: center;
+    padding-top: 15px;
+    border-bottom: 10px solid #34A4D5;
+}
+header > h1 {
+    font-size: 68px;
+    font-family: "Oleo Script", sans-serif;
+    color: white;
+    margin: 5px 0 0 0;
+}
+header > h4 {
+    font-size: 26px;
+    color: white;
+    margin: 0;
+    position: relative;
+    bottom: 15px;
+}
+#wrapper > header > nav > ul > li {
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 1px;
+    margin: 15px 5px 25px 5px;
+}
+nav > ul > li > a {
+    color: #50247D;
+    text-decoration: none;
+    background-color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+    /*font-weight: bold;*/
+    /*padding: 10px 15px;*/
+    /*color: #50247D;*/
+}
+nav > ul > li > a:hover {
+    background-color: #36A4D5;
+}
+section {
+    border-top: 10px solid #865AB3;
+    border-bottom: 10px solid #34A4D5;
+    background-color: #EAE7EE;
+    margin: 30px 0;
+    display: flex;
+    justify-content: space-around;
+}
+main {
+    margin: 40px 0 40px 40px;
+    background-color: #FFFFFF;
+    width: 45%;
+}
+
+#wrapper > section > main > p:nth-child(4) {
+    margin: 0;
+    padding: 0 30px 0 26px
+}
+
+#wrapper > section > main > p:nth-child(5) {
+    margin: 0;
+    padding: 20px 30px 37px 26px;
+}
+
+.oleo {
+    font-weight: bold;
+    font-family: "Oleo Script", sans-serif;
+}
+.main-tattle {
+    font-family: "Oleo Script", sans-serif;
+    font-size: 48px;
+    padding: 25px 0 0 25px;
+    margin: 0;
+}
+.subtitle {
+    margin: 0;
+    font-size: 26px;
+    position: relative;
+    bottom: 15px;
+    padding-left: 25px;
+}
+main > a {
+    text-decoration: none;
+    background-color: #865AB2;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    padding: 7px 15px;
+    float: right;
+}
+#wrapper > section > main > a:nth-child(6):hover {
+    background-color: #50247D;
+}
+.read-more {
+    text-decoration: none;
+    background-color: #36A4D5;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    padding: 7px 15px;
+    float: right;
+}
+
+main:after {
+    content: "";
+    clear: both;
+    height: 0;
+    zoom: 1;
+    display: block;
+}
+
+aside {
+    width: 45%;
+    margin-top: 40px;
+}
+img {
+    width: 100%;
+}
+figure {
+    margin: 0;
+    position: relative;
+}
+figcaption {
+    position: absolute;
+    text-transform: uppercase;
+    background-color: #36A4D5;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    padding: 7px 15px;
+    bottom: 106px;
+    left: 78px;
+}
+#wrapper > section > aside > div.first-line > article:nth-child(1) > figure:after {
+    content: "";
+    clear: both;
+    height: 0;
+    zoom: 1;
+    display: block;
+}
+article {
+    margin: 0 30px 10px 0;
+    background-color: white;
+    width: 40%;
+    display: inline-block;
+}
+h5 {
+    color: #36A4D5;
+    font-size: 1.3em;
+    margin: 0 10px;
+}
+#wrapper > section > aside > div > article > p {
+    margin: 5px 10px 10px 10px;
+}
+
+footer {
+    color: white;
+    margin: 0 0 40px 20px;
+    font-weight: bold;
+}
