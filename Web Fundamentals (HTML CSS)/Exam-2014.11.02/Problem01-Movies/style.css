@@ -1,0 +1,40 @@
+body {
+    font-family: Helvetica, Tahoma,sans-serif;
+    font-size: 16px;
+}
+p {
+    font-size: 12px;
+}
+article {
+    width: 160px;
+    display: inline-block;
+}
+figure {
+    border: 1px solid black;
+    text-align: center;
+    height: 198px;
+    margin: 0;
+    cursor: pointer;
+}
+figure:hover {
+    background-color: red;
+}
+figure > img {
+    width: 88%;
+}
+.info {
+    margin-top: 20px;
+}
+.info > img {
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 3px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.info > img:hover {
+    background-color: red;
+}
+.info > p{
+    display: inline-block;
+}
