@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    font-family: Tahoma, Helvetiva, sans-serif;
+    background-color: #EEEEEE;
+}
+#wrapper {
+    margin: 15px auto 0;
+    width: 800px;
+    border-radius: 7px;
+    box-shadow: 0 0 10px black;
+    padding: 15px;
+    text-align: center;
+    background-color: #ffffff;
+}
+h1 {
+    font-size: 24px;
+}
+p {
+    font-size: 0.8em;
+    padding: 0 10px;
+}
+main {
+    width: 87%;
+    margin: 0 auto;
+    border-top: 2px solid #DADADA;
+}
+form {
+    display: flex;
+    justify-content: space-between;
+}
+fieldset {
+    margin-top: 20px;
+    border: none;
+    display: flex;
+    width: 50%;
+}
+legend {
+    text-align: left;
+}
+.checkbox {
+    display: inline-block;
+    text-align: left;
+}
+#inform {
+    width: 4%;
+    height: auto;
+}
+input {
+    width: 70%;
+    height: 30px;
+    margin: 5px 0 10px 0;
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
+}
+
+.red {
+    color: #FF6089;
+    text-align: left;
+    text-decoration: none;
+}
+.red:hover {
+    text-decoration: underline;
+}
+button {
+    margin-top: 15px;
+    font-weight: bold;
+    background-color: #F0F0F0;
+    border-radius: 5px;
+    padding: 10px 30px ;
+}
+button:hover {
+    background-color: #B1DF65;
+
+}
+.no {
+    background-image: url("03.FreeAccount-Resources/no.png");
+    background-position: 196px;
+    background-repeat: no-repeat;
+}
+.yes {
+    background-image: url("03.FreeAccount-Resources/ok.png");
+    background-position: 196px;
+    background-repeat: no-repeat;
+}
+::-webkit-input-placeholder {
+    padding-left: 10px;
+}
+:-moz-placeholder {
+    padding-left: 10px;
+}
+:-ms-input-placeholder {
+    padding-left: 10px;
+}
