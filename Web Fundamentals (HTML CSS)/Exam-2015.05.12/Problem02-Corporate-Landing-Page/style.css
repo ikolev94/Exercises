@@ -1,0 +1,169 @@
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Ubuntu Light'), local('Ubuntu-Light'), url(http://fonts.gstatic.com/s/ubuntu/v8/_aijTyevf54tkVDLy-dlnD8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Ubuntu'), url(http://fonts.gstatic.com/s/ubuntu/v8/_xyN3apAT_yRRDeqB3sPRg.woff) format('woff');
+}
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Ubuntu Bold'), local('Ubuntu-Bold'), url(http://fonts.gstatic.com/s/ubuntu/v8/0ihfXUL2emPh0ROJezvraD8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+
+#wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+header {
+    height: 530px;
+    text-align: center;
+    background: linear-gradient(45deg, rgba(79,78,135,1) 0%, rgba(79,78,135,1) 0%, rgba(76,153,159,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4e87', endColorstr='#4c999f', GradientType=1 );
+}
+.up-nav {
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    border-bottom: 1px solid #758DB3;
+}
+h4, .up-nav > p{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+}
+h5 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    color: #F0F7F4;
+    margin: 0;
+    word-spacing: 5px;
+}
+ul {
+    list-style: none;
+    margin-top: 25px;
+}
+li {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    display: inline-block;
+    margin-right: 15px;
+    cursor: pointer;
+}
+li:hover {
+    color: #56EEFD;
+}
+h1 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 54px;
+    color: #56EEFD;
+    margin-bottom: 0;
+    letter-spacing: 10px;
+}
+.big {
+    color: #FEFBFE;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 47px;
+}
+button {
+    display: block;
+    margin: 0 auto;
+    background-color: #517AA7;
+    border: 2px solid white;
+    padding: 15px 60px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 24px;
+    color: white;
+    margin-bottom: 45px;
+}
+header > a {
+    margin-top: 25px;
+    color: white;
+    font-family: Myriad Pro,sans-serif;
+    font-size: 16px;
+}
+header > a:hover{
+    color: #56EEFD;
+
+}
+h3 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 28px;
+    color: #6A7885;
+}
+section {
+    text-align: center;
+}
+#wrapper > main > section > div {
+    display: flex;
+    justify-content: space-around;
+}
+article {
+    width: 25%;
+    color: #6C7C93;
+}
+article > div {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    background-image: url("02.CorporateLandingPage-Resources/02-Icons-Sprite.png");
+    background-repeat:  no-repeat;
+}
+.gear {
+    background-position: 5% 5%;
+}
+.house {
+    background-position: 47% 5%;
+}
+.question {
+    background-position: 95% 5%;
+}
+article > p {
+    margin-bottom: 5px;
+}
+article > a{
+    color: #4BB5C3;
+    text-decoration: none;
+}
+h6 {
+    text-align: center;
+    background: #FF7978;
+    padding: 27px;
+    color: white;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: normal;
+}
+section:nth-child(3) > div > article {
+    display: flex;
+    background: #F7F8FA;
+    width: 48%;
+}
+span {
+    text-align: left;
+    padding: 0 20px;
+}
+#wrapper > main > section:nth-child(4) > p {
+    width: 68%;
+    margin: 0 auto;
+}
+#wrapper > main > section:nth-child(4) > p:nth-child(3) {
+    color: #42BAD3;
+    margin-top: 21px;
+    font-weight: normal;
+}
+footer {
+    background: #282E3C;
+    color: #68766E;
+    font-size: 12px;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 20px;
+}

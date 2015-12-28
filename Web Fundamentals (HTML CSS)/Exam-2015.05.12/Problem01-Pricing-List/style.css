@@ -1,0 +1,66 @@
+body {
+    font-family: Tahoma,sans-serif;
+    font-size: 16px;
+    color: #7C8C99;
+}
+#wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
+header, .price {
+    font-family: 'Vollkorn', serif;
+    text-align: center;
+}
+section {
+    display: flex;
+    justify-content: space-between;
+}
+article {
+    width: 30%;
+    text-align: center;
+    background-color: #F6F7F9;
+}
+article > header {
+    background-color: #EBEFF2;
+}
+.info {
+    height: 330px;
+}
+p {
+    margin: 15px 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #F2F3F5;
+}
+button {
+    background-color: #CAD5D9;
+    border-radius: 4px;
+    padding: 20px 60px;
+    color: white;
+    font-weight: bold;
+}
+h1 {
+    font-size: 40px;
+}
+h3 {
+    margin: 0;
+    line-height: 3;
+    font-size: 30px;
+}
+.price {
+    margin: 17px 0;
+    font-size: 60px;
+    border: none;
+}
+article:nth-child(2):hover > .effect{
+    background-color: #65D3E2;
+    color: white;
+    cursor: pointer;
+}
+article:nth-child(2):hover > .info > .price {
+    color: #65D3E2;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #65D3E2;
+    cursor: pointer;
+}
