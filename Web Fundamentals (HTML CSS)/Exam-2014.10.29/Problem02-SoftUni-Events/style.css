@@ -1,0 +1,102 @@
+@font-face {
+    font-family: ThisNight;
+    src: url(02.SoftUniEvents-Resources/ThisNight.ttf);
+}
+@font-face {
+    font-family: LDF;
+    src: url(02.SoftUniEvents-Resources/LDFComicSans.ttf)
+}
+
+header {
+    font-family: ThisNight, Helvetica,sans-serif;
+    text-align: center;
+}
+h1 {
+    background-color: #234465;
+    color: white;
+    margin: 0;
+    padding: 15px 0;
+    font-size: 6em;
+}
+h1:hover {
+    color: #FF9C00;
+    cursor: pointer;
+}
+ul {
+    list-style: none;
+}
+li {
+    display: inline-block;
+}
+li a{
+    text-decoration: none;
+    color: #234465;
+    margin: 0 10px;
+    font-size: 1.5em;
+    padding: 10px;
+}
+.top > li:nth-child(3) > a {
+    color: white;
+    background-color: #234465;
+}
+.top li a:hover {
+    color: #FF9C00;
+}
+section{
+    font-family: LDF,Arial,sans-serif;
+    width: 960px;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    margin: 0 auto;
+}
+article {
+    width: 38%;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: 10px;
+    box-shadow: 5px 5px 10px black;
+    padding: 10px;
+}
+img {
+    width: 100%;
+    cursor: pointer;
+}
+h2 {
+    text-align: center;
+    background-color: #234465;
+    color: white;
+    padding: 15px 0;
+}
+.info {
+    margin: 2px 0 ;
+}
+.author {
+    margin: 0;
+    font-style: italic;
+}
+footer {
+    font-family: LDF,Arial,sans-serif;
+    background-color: #234465;
+    text-align: center;
+    color: white;
+}
+.bottom {
+    padding: 20px 0;
+    border-bottom: 1px solid white;
+}
+.bottom li a{
+    color: white;
+    text-decoration: none;
+}
+.bottom li a:hover {
+    background-color: #FF9C00;
+    color: #234465;
+}
+footer p {
+    margin: 0;
+}
+footer span:hover {
+    color: #FF9C00;
+    cursor: pointer;
+}
