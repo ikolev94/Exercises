@@ -1,0 +1,64 @@
+@media (max-width: 1200px) {
+    #wrapper {
+        width: 100%;
+    }
+    header, main {
+        width: 90%;
+    }
+    header > p {
+        margin: 10px auto;
+    }
+    header nav > ul {
+        margin: 0;
+    }
+    header nav > ul li {
+        width: 20%;
+    }
+
+    main >section {
+        width: 90%;
+    }
+    main > aside {
+        width: 93%;
+        margin-top: 0;
+    }
+
+    footer > p{
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 730px) {
+    header > nav {
+        height: auto;
+    }
+    header nav > ul li {
+        width: auto;
+        float: none;
+        display: block;
+    }
+
+    main section > div {
+        height: auto;
+        text-align: center;
+        background-color: #b7cc89;
+    }
+
+    main > section > div > article {
+        background-color: white;
+    }
+
+    main > section > div > div {
+        float: none;
+        margin-right: 0;
+        background-repeat: no-repeat;
+        background-position: center;
+        /*border-left: 120px solid #B9CC8B ;*/
+        /*border-right: 120px solid #B9CC8B ;*/
+    }
+
+    main > aside > article {
+        text-align: center;
+    }
+}

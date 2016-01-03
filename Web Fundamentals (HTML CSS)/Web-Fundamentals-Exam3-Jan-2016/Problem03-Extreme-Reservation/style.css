@@ -1,0 +1,177 @@
+body {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 20px;
+    background-image: url("Resources/Images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #306C98;
+}
+
+#wrapper {
+    width: 800px;
+    margin: 0 auto;
+    background-color: rgba(219, 219, 219, 0.3);
+    border-radius: 40px;
+    padding: 20px;
+}
+
+nav {
+    text-align: center;
+}
+
+ul {
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+li {
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+li:hover {
+    background-color: #72A6CF;
+}
+li:first-child {
+    background-color: #72A6CF;
+    margin-left: 17px;
+}
+
+li:last-child {
+    margin-right: 17px;
+}
+
+li:before {
+    position: relative;
+    top: 3px;
+}
+
+li:first-child:before {
+    content: url("Resources/Images/paraglider-icon.png");
+}
+
+li:nth-child(2):before {
+    content: url("Resources/Images/sky-diver.png");
+}
+li:nth-child(3):before {
+    content: url("Resources/Images/climbing.png");
+}
+li:nth-child(4):before {
+    content: url("Resources/Images/about-us.png");
+}
+
+a {
+    bottom: 13px;
+    position: relative;
+    text-decoration: none;
+    color: #306C98;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+fieldset {
+    text-align: center;
+    border: 3px solid #5D7C95;
+    width: 40%;
+    border-radius: 20px;
+}
+
+input {
+    text-align: center;
+    color: #306C98;
+    width: 95%;
+    border-radius: 50px;
+    height: 40px;
+    font-size: 22px;
+    margin: 12px 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid #5D7C95;
+}
+input:focus, select:focus, button{
+    outline: none;
+}
+
+fieldset:nth-child(1) > input {
+    background-position: 10px;
+    background-repeat: no-repeat;
+}
+fieldset:nth-child(1) > input[type="text"]:nth-child(2) {
+    margin-top: 40px;
+    background-image: url("Resources/Images/user1.png");
+}
+fieldset:nth-child(1) > input[type="email"]:nth-child(3) {
+    background-image: url("Resources/Images/email.png");
+}
+fieldset:nth-child(1) > input[type="tel"]:nth-child(4) {
+    background-image: url("Resources/Images/phone.png");
+}
+
+h3 {
+    margin-bottom: 0;
+}
+
+div > input {
+    height: auto;
+    width: auto;
+}
+
+::-webkit-input-placeholder {
+    color: rgba(85, 169, 255, 0.5);
+    text-align: center;
+}
+
+select {
+    display: block;
+    margin: 10px auto;
+    width: 95%;
+    height: 55px;
+    font-size: 22px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid #5D7C95;
+    color: #306C98;
+}
+
+#destination > option, #destination > optgroup{
+    background-color: #BFE0E9;
+    font-size: 14px;
+}
+
+#date {
+    margin-bottom: 50px;
+}
+.buttons {
+    text-align: right;
+    margin-right: 33px;
+    margin-top: 20px;
+}
+button {
+    font-size: 24px;
+    padding: 15px 35px;
+    border-radius: 50px;
+    background-color: rgba(219, 219, 219, 0.001);
+    cursor: pointer;
+    font-weight: bold;
+}
+.red {
+    border: 2px solid red;
+    color: red;
+}
+.red:hover {
+    background-color: red;
+    color: white;
+}
+.green {
+    border: 2px solid green;
+    color: green;
+}
+.green:hover {
+    background-color: green;
+    color: white;
+}

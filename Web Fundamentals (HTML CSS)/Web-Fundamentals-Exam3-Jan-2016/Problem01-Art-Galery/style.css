@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, Helvetica,sans-serif;
+    font-size: 22px;
+}
+
+#wrapper{
+    width: 900px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: #D69F81;
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    /*width: 33%;*/
+    background-color: #741819;
+    padding: 40px;
+}
+
+section > div {
+    background: white;
+    padding: 20px;
+}
+.img {
+    background: url("Resources/picture.jpg");
+    height: 380px;
+    width: 145px;
+    background-repeat: no-repeat;
+    background-position: -86px 0;
+    border-radius: 5px;
+}
+
+aside {
+    width: 33%;
+    text-align: center;
+}
+
+article {
+    background-color: white;
+    width: 60%;
+    padding: 15px;
+    margin: 40px auto;
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: normal;
+    background-color: #D69F81;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+h3:hover {
+    box-shadow: 0 0 10px #515151;
+    color: white;
+}

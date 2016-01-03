@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Extreme Reservation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#">Paragliding</a></li>
+                    <li><a href="#">Skydiving</a></li>
+                    <li><a href="#">Climbing</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </nav>
+        </header>
+        <form action="#">
+            <fieldset>
+                <legend>Personal Info</legend>
+                <input type="text" placeholder="Enter your full name">
+                <input type="email" placeholder="Enter a valid e-mail">
+                <input type="tel" placeholder="Enter a phone number">
+            </fieldset>
+            <fieldset>
+                <legend>Flight Info</legend>
+                <h3>Are flying for first time?</h3>
+                <div>
+                    <input name="yes-no" type="radio" id="yes">
+                    <label for="yes">Yes</label>
+                    <input name="yes-no" type="radio" id="no">
+                    <label for="no">No</label>
+                </div>
+                <label for="destination">Choose Destination</label>
+                <select name="country" id="destination">
+                    <optgroup label="Bulgaria"></optgroup>
+                        <option value="Dobrostan">Dobrostan</option>
+                        <option value="Sopot">Sopot</option>
+                        <option value="Sofia">Sofia</option>
+                        <option value="Bourgas">Bourgas</option>
+                    <optgroup label="Rest of the world"></optgroup>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="France">France</option>
+                </select>
+                <label for="date">Choose Date</label>
+                <input type="date" id="date">
+            </fieldset>
+        </form>
+        <div class="buttons">
+            <button class="red">Clear</button>
+            <button class="green">Send</button>
+        </div>
+    </div>
+</body>
+</html>
