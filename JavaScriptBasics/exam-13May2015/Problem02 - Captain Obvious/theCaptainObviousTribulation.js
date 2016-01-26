@@ -25,15 +25,21 @@ function solve(input) {
         console.log('No words');
         return;
     }
+    var result = [];
     for (var k = 0; k < sentences.length; k++) {
         for (var r = 0; r < obviousWord.length; r++) {
             var word = obviousWord[r];
             if (sentences[k].toLocaleLowerCase().indexOf(word) !== -1) {
-                console.log(sentences[k].trim() + symbols[k]);
+                result.push(sentences[k].trim() + symbols[k]);
                 break;
             }
         }
     }
+    if (!result.length) {
+        console.log('No sentences');
+        return;
+    }
+    console.log(result.join('\r\n'));
 }
 
 
