@@ -1,23 +1,43 @@
 var button = document.getElementsByClassName('button')[0];
 
 button.onclick = function () {
-    var firstCol = document.getElementsByClassName("firstColumn");
-    document.getElementById('firstColResult').innerText = sumCol(firstCol);
+    var firstCol = sumCol(document.getElementsByClassName("firstColumn"));
 
-    var secondCol = document.getElementsByClassName("secondColumn");
-    document.getElementById('secondColResult').innerText = sumCol(secondCol);
+    var secondCol = sumCol(document.getElementsByClassName("secondColumn"));
 
-    var thirdCol = document.getElementsByClassName("thirdColumn");
-    document.getElementById('thirdColResult').innerText = sumCol(thirdCol);
+    var thirdCol = sumCol(document.getElementsByClassName("thirdColumn"));
+
+    if (!document.getElementById('resultsRow')) {
+        appendTr(firstCol, secondCol, thirdCol);
+    } else {
+        document.getElementById('firstColResult').innerText = firstCol;
+        document.getElementById('secondColResult').innerText = secondCol;
+        document.getElementById('thirdColResult').innerText = thirdCol;
+    }
 
     var firstRow = document.getElementById('firstRow');
-    document.getElementById('firstRowResult').innerText = sumRow(firstRow);
+    var firstRowResult = document.getElementById('firstRowResult');
+    if (!firstRowResult) {
+        appendTd(firstRow, sumRow(firstRow));
+    } else {
+        firstRowResult.innerText = sumRow(firstRow);
+    }
 
     var secondRow = document.getElementById('secondRow');
-    document.getElementById('secondRowResult').innerText = sumRow(secondRow);
+    var secondRowResult = document.getElementById('secondRowResult');
+    if (!secondRowResult) {
+        appendTd(secondRow, sumRow(secondRow));
+    } else {
+        secondRowResult.innerText = sumRow(secondRow);
+    }
 
     var thirdRow = document.getElementById('thirdRow');
-    document.getElementById('thirdRowResult').innerText = sumRow(thirdRow);
+    var thirdRowResult = document.getElementById('thirdRowResult');
+    if (!thirdRowResult) {
+        appendTd(thirdRow, sumRow(thirdRow));
+    } else {
+        thirdRowResult.innerText = sumRow(thirdRow);
+    }
 };
 
 function sumRow(row) {
@@ -46,4 +66,37 @@ function sumCol(col) {
     } else {
         return colSum;
     }
+}
+
+function appendTr(col1, col2, col3) {
+    var body = document.getElementsByTagName('tbody')[0];
+    var tr = document.createElement('tr');
+
+    var first = document.createElement('td');
+    var second = document.createElement('td');
+    var third = document.createElement('td');
+
+    first.innerText = col1;
+    first.id = 'firstColResult';
+    first.className = 'result';
+    second.innerText = col2;
+    second.id = 'secondColResult';
+    second.className = 'result';
+    third.innerText = col3;
+    third.id = 'thirdColResult';
+    third.className = 'result';
+
+    tr.appendChild(first);
+    tr.appendChild(second);
+    tr.appendChild(third);
+    tr.id = 'resultsRow';
+    body.insertBefore(tr, body.childNodes[body.childNodes.length - 2]);
+}
+
+function appendTd(row, result) {
+    var td = document.createElement('td');
+    td.id = row.id + 'Result';
+    td.className = 'result';
+    td.innerText = result;
+    row.appendChild(td);
 }

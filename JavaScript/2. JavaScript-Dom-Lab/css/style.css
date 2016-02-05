@@ -1,5 +1,6 @@
 table, tr, td {
     border: 1px solid black;
+    text-align: center;
 }
 
 .button {
@@ -7,7 +8,12 @@ table, tr, td {
     text-align: center;
 }
 
-input, .result, .resultColumn {
+input {
     padding: 3em;
-
+    text-align: center;
+}
+.result {
+    padding: 2em;
+    background-color: #6e6e6e;
+    color: white;
 }
