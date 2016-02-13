@@ -28,11 +28,23 @@ var imdb = imdb || {};
 
         // Task 2 - Add event listener for movies boxes
         moviesContainer.addEventListener('click', function (ev) {
-            if (ev.target.tagName === 'LI'||ev.target.parentNode.tagName === 'LI') {
-                //var atr= ev.target.attributes;
-                //var atrf= ev.target.attributes[0];
-                //console.log(atr);
-                console.log('sdf');
+            if (ev.target.tagName === 'LI' || ev.target.parentNode.tagName === 'LI') {
+                var movieId,
+                    allMovies = [],
+                    moviesHtml;
+
+                movieIdStr = ev.target.getAttribute('data-id') || ev.target.parentElement.getAttribute('data-id');
+                movieId = parseInt(movieIdStr);
+
+                data.forEach(function (e) {
+                    e._movies.forEach(function (m) {
+                        allMovies.push(m);
+                    })
+                });
+                var movie = allMovies.filter(function (m) {
+                    return m._id === movieId;
+                })[0];
+                console.log(movie.title);
             }
         });
         // Task 3 - Add event listener for delete button (delete movie button or delete review button)
