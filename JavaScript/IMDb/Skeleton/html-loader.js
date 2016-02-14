@@ -31,20 +31,23 @@ var imdb = imdb || {};
             if (ev.target.tagName === 'LI' || ev.target.parentNode.tagName === 'LI') {
                 var movieId,
                     allMovies = [],
-                    moviesHtml;
+                    detailsHtml;
 
                 movieIdStr = ev.target.getAttribute('data-id') || ev.target.parentElement.getAttribute('data-id');
                 movieId = parseInt(movieIdStr);
 
-                data.forEach(function (e) {
-                    e._movies.forEach(function (m) {
+                data.forEach(function (genre) {
+                    genre.getMovies().forEach(function (m) {
                         allMovies.push(m);
                     })
                 });
                 var movie = allMovies.filter(function (m) {
                     return m._id === movieId;
                 })[0];
-                console.log(movie.title);
+
+                detailsContainer.setAttribute('data-movie-id',movieId);
+                detailsHtml = loadDetails(movie.getActors(),movie.getReviews());
+                detailsContainer.innerHTML = detailsHtml.outerHTML;
             }
         });
         // Task 3 - Add event listener for delete button (delete movie button or delete review button)
@@ -80,6 +83,40 @@ var imdb = imdb || {};
         });
 
         return moviesUl;
+    }
+
+    function loadDetails(actors, reviews) {
+        var div = document.createElement('div'),
+            actorsHeader = document.createElement('h2'),
+            actorUl = document.createElement('ul'),
+            reviewsUl = document.createElement('ul'),
+            reviewsHeader = document.createElement('h2');
+        actorsHeader.innerText = 'Actors';
+        reviewsHeader.innerText = 'Reviews';
+        div.appendChild(actorsHeader);
+        actors.forEach(function (a) {
+            var li = document.createElement('li');
+
+            li.innerHTML = '<h4>' + a.name + '</h4>';
+            li.innerHTML += '<p><strong>Bio:</strong>' + a.bio + '</p>';
+            li.innerHTML += '<p><strong>Born:</strong>' + a.born + '</p>';
+
+            actorUl.appendChild(li);
+        });
+        div.appendChild(actorUl);
+        div.appendChild(reviewsHeader);
+        reviews.forEach(function (r) {
+            var li = document.createElement('li');
+
+            li.innerHTML = '<h4>' + r.author + '</h4>';
+            li.innerHTML += '<p>Bio: ' + r.content + '</p>';
+            li.innerHTML += '<p>Born: ' + r.date + '</p>';
+
+            reviewsUl.appendChild(li);
+        });
+        div.appendChild(reviewsUl);
+
+        return div;
     }
 
     scope.loadHtml = loadHtml;
