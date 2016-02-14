@@ -45,12 +45,27 @@ var imdb = imdb || {};
                     return m._id === movieId;
                 })[0];
 
-                detailsContainer.setAttribute('data-movie-id',movieId);
-                detailsHtml = loadDetails(movie.getActors(),movie.getReviews());
+                detailsContainer.setAttribute('data-movie-id', movieId);
+                detailsHtml = loadDetails(movie.getActors(), movie.getReviews());
                 detailsContainer.innerHTML = detailsHtml.outerHTML;
             }
         });
         // Task 3 - Add event listener for delete button (delete movie button or delete review button)
+        moviesContainer.addEventListener('click', function (ev) {
+            if (ev.target.tagName === 'BUTTON') {
+
+                var movieId = parseInt(ev.target.parentNode.getAttribute('data-id')),
+                    genreId = parseInt(moviesContainer.getAttribute('data-genre-id')),
+                genre = data.filter(function (g) {
+                    return g._id === genreId;
+                })[0];
+                genre.deleteMovie(movieId);
+
+                var movieLi = ev.target.parentNode;
+                movieLi.parentNode.removeChild(movieLi);
+                ev.stopPropagation();
+            }
+        })
     }
 
     function loadGenres(genres) {
@@ -78,7 +93,7 @@ var imdb = imdb || {};
             liMovie.innerHTML += '<div>Rating: ' + movie.rating + '</div>';
             liMovie.innerHTML += '<div>Actors: ' + movie._actors.length + '</div>';
             liMovie.innerHTML += '<div>Reviews: ' + movie._reviews.length + '</div>';
-
+            liMovie.innerHTML += '<button>Delete movie</button>';
             moviesUl.appendChild(liMovie);
         });
 
