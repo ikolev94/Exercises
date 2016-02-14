@@ -32,7 +32,7 @@ var imdb = imdb || {};
     Movie.prototype.deleteReviewById = function (id) {
         var reviewToDelete = this._reviews.filter(function (r) {
             return r._id === id;
-        });
+        })[0];
         this.deleteReview(reviewToDelete)
     };
     Movie.prototype.getReviews = function () {

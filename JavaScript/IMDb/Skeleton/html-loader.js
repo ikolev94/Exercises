@@ -36,6 +36,7 @@ var imdb = imdb || {};
                 movieIdStr = ev.target.getAttribute('data-id') || ev.target.parentElement.getAttribute('data-id');
                 movieId = parseInt(movieIdStr);
 
+
                 data.forEach(function (genre) {
                     genre.getMovies().forEach(function (m) {
                         allMovies.push(m);
@@ -46,7 +47,7 @@ var imdb = imdb || {};
                 })[0];
 
                 detailsContainer.setAttribute('data-movie-id', movieId);
-                detailsHtml = loadDetails(movie.getActors(), movie.getReviews());
+                detailsHtml = loadDetails(movie.getActors(), movie.getReviews(), movieId);
                 detailsContainer.innerHTML = detailsHtml.outerHTML;
             }
         });
@@ -56,14 +57,40 @@ var imdb = imdb || {};
 
                 var movieId = parseInt(ev.target.parentNode.getAttribute('data-id')),
                     genreId = parseInt(moviesContainer.getAttribute('data-genre-id')),
-                genre = data.filter(function (g) {
-                    return g._id === genreId;
-                })[0];
+                    genre = data.filter(function (g) {
+                        return g._id === genreId;
+                    })[0];
                 genre.deleteMovie(movieId);
 
                 var movieLi = ev.target.parentNode;
                 movieLi.parentNode.removeChild(movieLi);
                 ev.stopPropagation();
+            }
+        });
+
+        detailsContainer.addEventListener('click', function (e) {
+            if (e.target.tagName === 'BUTTON') {
+
+                var liReview = e.target.parentNode,
+                    movieId = Number(liReview.className),
+                    reviewId = Number(liReview.id),
+                    movie,
+                    allMovies = [];
+
+                data.forEach(function (genre) {
+                    genre.getMovies().forEach(function (m) {
+                        allMovies.push(m);
+                    })
+                });
+
+                movie = allMovies.filter(function (e) {
+                    return e._id === movieId;
+                })[0];
+                console.log(movie._reviews);
+                movie.deleteReviewById(reviewId);
+                console.log(movie._reviews);
+                liReview.parentNode.removeChild(liReview);
+                e.stopPropagation();
             }
         })
     }
@@ -100,7 +127,7 @@ var imdb = imdb || {};
         return moviesUl;
     }
 
-    function loadDetails(actors, reviews) {
+    function loadDetails(actors, reviews, movieId) {
         var div = document.createElement('div'),
             actorsHeader = document.createElement('h2'),
             actorUl = document.createElement('ul'),
@@ -122,11 +149,12 @@ var imdb = imdb || {};
         div.appendChild(reviewsHeader);
         reviews.forEach(function (r) {
             var li = document.createElement('li');
-
+            li.className = movieId;
+            li.id = r._id;
             li.innerHTML = '<h4>' + r.author + '</h4>';
             li.innerHTML += '<p>Bio: ' + r.content + '</p>';
             li.innerHTML += '<p>Born: ' + r.date + '</p>';
-
+            li.innerHTML += '<button>Delete review</button>';
             reviewsUl.appendChild(li);
         });
         div.appendChild(reviewsUl);
@@ -136,3 +164,20 @@ var imdb = imdb || {};
 
     scope.loadHtml = loadHtml;
 }(imdb));
+
+Array.prototype.flatten = function () {
+    var result = [];
+    flatt(this);
+
+    function flatt(arr) {
+        arr.forEach(function (e) {
+            if (Array.isArray(e)) {
+                flatt(e);
+            } else {
+                result.push(e);
+            }
+        })
+    }
+
+    return result;
+};
