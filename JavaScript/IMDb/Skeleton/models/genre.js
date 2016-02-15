@@ -23,7 +23,7 @@ var imdb = imdb || {};
     Genre.prototype.deleteMovieById = function (id) {
         var movieToDelete = this._movies.filter(function (m) {
             return m._id ===id;
-        });
+        })[0];
         this.deleteMovie(movieToDelete);
     };
 
