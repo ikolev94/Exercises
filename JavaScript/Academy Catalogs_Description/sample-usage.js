@@ -146,15 +146,23 @@ function solve() {
 
         };
 
-        Catalog.prototype.find = function (id) {
-            if (id === undefined || isNaN(id)) {
+        Catalog.prototype.find = function (options) {
+            if (typeof options === 'undefined') {
                 throw new Error('Invalid id.');
             }
+            if (typeof options === 'number') {
+                return this.items.filter(function (e) {
+                    return e.id === id;
+                })[0];
+            }
+            return this.items.filter(function (item) {
+                return Object.keys(options).every(function (key) {
+                    return options[key] === item[key];
+                });
+            });
 
-            return this.items.filter(function (e) {
-                return e.id === id;
-            })[0];
         };
+
 
         return Catalog;
     }());
@@ -196,11 +204,11 @@ console.log(catalog.find(book1.id));
 console.log(catalog.find({id: book2.id, genre: 'IT'}));
 //returns book2
 
-console.log(catalog.search('js'));
+//console.log(catalog.search('js'));
 // returns book2
 
-console.log(catalog.search('javascript'));
+//console.log(catalog.search('javascript'));
 //returns book1 and book2
 
-console.log(catalog.search('Te sa zeleni'))
+//console.log(catalog.search('Te sa zeleni'));
 //returns []
