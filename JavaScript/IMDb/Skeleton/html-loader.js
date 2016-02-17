@@ -5,7 +5,8 @@ var imdb = imdb || {};
         var container = document.querySelector(selector),
             moviesContainer = document.getElementById('movies'),
             detailsContainer = document.getElementById('details'),
-            genresUl = loadGenres(data);
+            genresUl = loadGenres(data),
+            allMovies = [];
 
         container.appendChild(genresUl);
 
@@ -30,7 +31,6 @@ var imdb = imdb || {};
         moviesContainer.addEventListener('click', function (ev) {
             if (ev.target.tagName === 'LI' || ev.target.parentNode.tagName === 'LI') {
                 var movieId,
-                    allMovies = [],
                     detailsHtml;
 
                 movieIdStr = ev.target.getAttribute('data-id') || ev.target.parentElement.getAttribute('data-id');
@@ -55,15 +55,18 @@ var imdb = imdb || {};
         moviesContainer.addEventListener('click', function (ev) {
             if (ev.target.tagName === 'BUTTON') {
 
-                var movieId = parseInt(ev.target.parentNode.getAttribute('data-id')),
-                    genreId = parseInt(moviesContainer.getAttribute('data-genre-id')),
+                var movieId = Number(ev.target.parentNode.getAttribute('data-id')),
+                    genreId = moviesContainer.getAttribute('data-genre-id'),
                     genre = data.filter(function (g) {
-                        return g._id === genreId;
+                        return g._id == genreId;
                     })[0];
-                genre.deleteMovie(movieId);
+                genre.deleteMovieById(movieId);
 
                 var movieLi = ev.target.parentNode;
                 movieLi.parentNode.removeChild(movieLi);
+                while (detailsContainer.firstChild) {
+                    detailsContainer.removeChild(detailsContainer.firstChild);
+                }
                 ev.stopPropagation();
             }
         });
@@ -72,23 +75,14 @@ var imdb = imdb || {};
             if (e.target.tagName === 'BUTTON') {
 
                 var liReview = e.target.parentNode,
-                    movieId = Number(liReview.className),
+                    movieId = liReview.className,
                     reviewId = Number(liReview.id),
-                    movie,
-                    allMovies = [];
-
-                data.forEach(function (genre) {
-                    genre.getMovies().forEach(function (m) {
-                        allMovies.push(m);
-                    })
-                });
+                    movie;
 
                 movie = allMovies.filter(function (e) {
-                    return e._id === movieId;
+                    return e._id == movieId;
                 })[0];
-                console.log(movie._reviews);
                 movie.deleteReviewById(reviewId);
-                console.log(movie._reviews);
                 liReview.parentNode.removeChild(liReview);
                 e.stopPropagation();
             }
@@ -164,20 +158,3 @@ var imdb = imdb || {};
 
     scope.loadHtml = loadHtml;
 }(imdb));
-
-Array.prototype.flatten = function () {
-    var result = [];
-    flatt(this);
-
-    function flatt(arr) {
-        arr.forEach(function (e) {
-            if (Array.isArray(e)) {
-                flatt(e);
-            } else {
-                result.push(e);
-            }
-        })
-    }
-
-    return result;
-};

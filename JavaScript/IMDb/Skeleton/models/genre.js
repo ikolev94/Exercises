@@ -2,6 +2,7 @@ var imdb = imdb || {};
 
 (function (scope) {
     var id = 1;
+
     function Genre(name) {
         this.name = name;
         this._movies = [];
@@ -14,17 +15,15 @@ var imdb = imdb || {};
     };
 
     Genre.prototype.deleteMovie = function (movie) {
-        var index = this._movies.indexOf(movie);
-        if (index!==-1) {
-            this._movies.splice(index,1);
-        }
+        this._movies = this._movies.filter(function (movie) {
+            return movie !== movie;
+        });
     };
 
     Genre.prototype.deleteMovieById = function (id) {
-        var movieToDelete = this._movies.filter(function (m) {
-            return m._id ===id;
-        })[0];
-        this.deleteMovie(movieToDelete);
+        this._movies = this._movies.filter(function (movie) {
+            return movie._id !== id;
+        });
     };
 
     Genre.prototype.getMovies = function () {
