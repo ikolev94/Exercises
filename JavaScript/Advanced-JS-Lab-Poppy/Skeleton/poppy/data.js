@@ -1,59 +1,64 @@
-//var data = data || {};
-Object.prototype.extends = function (parent) {
+Function.prototype.extends = function (parent) {
     "use strict";
     this.prototype = Object.create(parent.prototype);
     this.prototype.constructor = this;
 };
+var data = data || {};
 
 data = (function () {
+    "use strict";
     var Popup = (function () {
-        function Popup(title, message, type, position, autoHide, timeOut, closeButton, callback) {
-            this._popupData = {
-                title: title,
-                message: message,
-                type: type,
-                position: position,
-                autoHide: autoHide,
-                timeOut: timeOut,
-                closeButton: closeButton,
-                callback: callback
-            };
-        }
+            function Popup(title, message, type, position, autoHide, timeOut, closeButton, callback) {
+                this.popupData = {
+                    title: title,
+                    message: message,
+                    type: type,
+                    position: position,
+                    autoHide: autoHide,
+                    timeOut: timeOut,
+                    closeButton: closeButton,
+                    callback: callback
+                };
+            }
 
-        return Popup;
-    })();
+            return Popup;
+        }()),
 
-    var SuccessPop = (function () {
-        function SuccessPop(title, message) {
-            Popup.call(this, title, message, 'success', 'bottomLeft', true, 200);
-        }
+        SuccessPop = (function () {
+            function SuccessPop(title, message) {
+                Popup.call(this, title, message, 'success', 'bottomLeft', true, 100);
+            }
 
-        return SuccessPop;
-    })();
+            SuccessPop.extends(Popup);
+            return SuccessPop;
+        }()),
 
-    var InfoPop = (function () {
-        function InfoPop(title, message) {
-            Popup.call(this, title, message, 'info', 'topLeft', false, false, true);
-        }
+        InfoPop = (function () {
+            function InfoPop(title, message) {
+                Popup.call(this, title, message, 'info', 'topLeft', false, 100, true);
+            }
 
-        return InfoPop;
-    })();
+            InfoPop.extends(Popup);
+            return InfoPop;
+        }()),
 
-    var ErrorPop = (function () {
-        function ErrorPop(title, message) {
-            Popup.call(this, title, message, 'error', 'topRight');
-        }
+        ErrorPop = (function () {
+            function ErrorPop(title, message) {
+                Popup.call(this, title, message, 'error', 'topRight');
+            }
 
-        return ErrorPop;
-    })();
+            ErrorPop.extends(Popup);
+            return ErrorPop;
+        }()),
 
-    var WarningPop = (function () {
-        function WarningPop(title, message, callback) {
-            Popup.call(this, title, message, 'warning', 'bottomRight', false, 0, false, callback);
-        }
+        WarningPop = (function () {
+            function WarningPop(title, message, callback) {
+                Popup.call(this, title, message, 'warning', 'bottomRight', false, 0, false, callback);
+            }
 
-        return WarningPop;
-    })();
+            WarningPop.extends(Popup);
+            return WarningPop;
+        }());
 
     return {
         SuccessPop: SuccessPop,
@@ -61,4 +66,4 @@ data = (function () {
         ErrorPop: ErrorPop,
         WarningPop: WarningPop
     };
-})();
+}());

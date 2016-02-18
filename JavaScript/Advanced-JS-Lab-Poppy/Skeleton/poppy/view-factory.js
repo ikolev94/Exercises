@@ -13,7 +13,7 @@ var CLOSE_BUTTON_TEXT = '×',
     };
 
 var createPopupView = function(popup) {
-    var popupData = popup._popupData,
+    var popupData = popup.popupData,
         positionClass = POSITIONS[popupData.position],
         typeClass = POPUP_TYPES[popupData.type],
         autoHide = popupData.autoHide || false,

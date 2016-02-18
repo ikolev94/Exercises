@@ -1,5 +1,6 @@
 function pop(type, title, message) {
-    var popup;
+    "use strict";
+    var popup, view;
     switch (type) {
         case 'success':
             popup = new data.SuccessPop(title, message);
@@ -15,56 +16,56 @@ function pop(type, title, message) {
             break;
     }
 
-    var view = createPopupView(popup);
-    var body = document.getElementsByTagName('body')[0];
-    body.appendChild(view);
+    view = createPopupView(popup);
+    document.body.appendChild(view);
     processPopup(view, popup);
 }
 
-function processPopup(domView, popup) {
-    var button = document.getElementsByClassName('poppy-close-button')[0];
-    if (button) {
-        button.addEventListener('click', function (ev) {
-            var op = 1;  // initial opacity
-            var timer = setInterval(function () {
-                if (op <= 0.1) {
-                    clearInterval(timer);
-                    domView.style.display = 'none';
-                }
-                domView.style.opacity = op;
-                domView.style.filter = 'alpha(opacity=' + op * 100 + ")";
-                op -= op * 0.1;
-            }, 100);
-            if (op === 0) {
-                var pop = ev.target.parentNode.parentNode;
+function fadeOut(domView, time, ev) {
+    "use strict";
+    var op = 1, timer;  // initial opacity
+    timer = setInterval(function () {
+        if (op <= 0) {
+            clearInterval(timer);
+            domView.style.display = 'none';
+            if (ev) {
+                pop = ev.target.parentNode.parentNode;
                 pop.parentNode.removeChild(pop);
             }
-        })
-    }
-    if (popup._popupData.autoHide) {
-        var op = 1;  // initial opacity
-        var timer = setInterval(function () {
-            if (op <= 0.1) {
-                clearInterval(timer);
-                domView.style.display = 'none';
-            }
-            domView.style.opacity = op;
-            domView.style.filter = 'alpha(opacity=' + op * 100 + ")";
-            op -= op * 0.05;
-        }, popup._popupData.timeOut);
-
-    }
-    if (popup._popupData.callback) {
-        domView.addEventListener('click', popup._popupData.callback);
-    }
+        }
+        domView.style.opacity = op;
+        domView.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= 0.05;
+    }, time);
 }
+
+function processPopup(domView, popup) {
+    "use strict";
+    if (popup.popupData.closeButton) {
+        var button = document.getElementsByClassName('poppy-close-button')[0];
+        button.addEventListener('click', function (ev) {
+            fadeOut(domView, popup.popupData.timeOut, ev);
+        });
+    }
+    if (popup.popupData.autoHide) {
+        fadeOut(domView, popup.popupData.timeOut);
+    }
+    if (popup.popupData.callback) {
+        domView.addEventListener('click', popup.popupData.callback);
+    }
+
+
+}
+
 
 pop('error', 'This is error pop', 'Hi we have a problem');
 pop('success', 'success yes!', 'you made it!');
-pop('warning', 'Warning! (CLICK ME!)', 'warning message', redirect);
 pop('info', 'info this is info', 'same info');
-
 
 function redirect() {
     window.location = 'https://www.youtube.com/watch?v=HMUDVMiITOU';
 }
+
+pop('warning', 'Warning! (CLICK ME!)', 'warning message', redirect);
+
+
