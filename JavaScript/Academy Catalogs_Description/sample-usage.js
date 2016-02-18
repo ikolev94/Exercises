@@ -1,34 +1,34 @@
-Object.prototype.extends = function (parent) {
-    this.prototype = Object.create(parent.prototype);
-    this.prototype.constructor = this;
-};
+function solve() {
 
-Array.prototype.flatten = function () {
-    'use strict';
+    Object.prototype.extends = function (parent) {
+        this.prototype = Object.create(parent.prototype);
+        this.prototype.constructor = this;
+    };
 
-    var resultArray = [];
+    Array.prototype.flatten = function () {
+        'use strict';
 
-    function getValues(array) {
-        var i,
-            value;
+        var resultArray = [];
 
-        for (i = 0; i < array.length; i += 1) {
-            value = array[i];
+        function getValues(array) {
+            var i,
+                value;
 
-            if (Array.isArray(value)) {
-                getValues(value);
-            } else {
-                resultArray.push(value);
+            for (i = 0; i < array.length; i += 1) {
+                value = array[i];
+
+                if (Array.isArray(value)) {
+                    getValues(value);
+                } else {
+                    resultArray.push(value);
+                }
             }
         }
-    }
 
-    getValues(this);
+        getValues(this);
 
-    return resultArray;
-};
-
-function solve() {
+        return resultArray;
+    };
 
     var Item = (function () {
         var id = 1;
@@ -75,7 +75,7 @@ function solve() {
         }
 
         function setGenre(genre) {
-            if (genre.length < 2 || genre.length > 40) {
+            if (typeof(genre) !== 'string' || genre.length < 2 || genre.length > 20) {
                 throw new Error('Invalid genre.');
             }
             this.genre = genre;
@@ -93,14 +93,14 @@ function solve() {
 
         Media.extends(Item);
         function setDuration(duration) {
-            if (isNaN(duration) || duration <= 0) {
+            if (typeof (duration) !== 'number' || duration <= 0) {
                 throw new Error('Invalid duration.');
             }
             this.duration = duration;
         }
 
         function setRating(rating) {
-            if (isNaN(rating) || rating < 1 || rating > 5) {
+            if (typeof (rating) !== 'number' || rating < 1 || rating > 5) {
                 throw new Error('Invalid rating.')
             }
             this.rating = rating;
@@ -127,6 +127,9 @@ function solve() {
         }
 
         Catalog.prototype.add = function () {
+            if (typeof (arguments) === 'undefined') {
+                throw new Error('undefined cannot be added to a catalog');
+            }
             var a = [], i, itemsToAdd;
             for (i = 0; i < arguments.length; i++) {
                 a.push(arguments[i]);
@@ -241,8 +244,10 @@ function solve() {
     }());
 
     function isValidName(str, min, max) {
-        var len = str.length;
-        return !(len < min || len > max);
+        return !(typeof (str) !== 'string' ||
+        str.length < min ||
+        str.length > max);
+
 
     }
 
@@ -262,8 +267,9 @@ function solve() {
     };
 }
 
+/*
 var module = solve();
-var catalogBook = module.getBookCatalog('John\'s catalog');
+var catalog = module.getBookCatalog('John\'s catalog');
 var catalogMedia = module.getMediaCatalog('Media Catalog');
 
 var book1 = module.getBook('The secrets of the JavaScript Ninja', '1234567890', 'IT', 'A book about JavaScript');
@@ -272,24 +278,25 @@ var book3 = module.getBook('JavaScript2: DOM', '3323456789', 'programing', 'book
 var media1 = module.getMedia('BBTV', 3, 32, 'tv Stuff');
 var media2 = module.getMedia('Radio1', 4, 32, 'radio Stuff');
 var media3 = module.getMedia('news', 1, 22, 'news Stuff');
-catalogBook.add(book1, book2, book3);
+catalog.add(book1, book2, book3);
 catalogMedia.add([media1, media2, media3]);
 
-//console.log(catalogMedia.getSortedByDuration());
+console.log(catalogMedia.getSortedByDuration());
 
-//catalog.add(book2);
-//console.log(catalog.getGenres());
-//console.log(catalog.find(book1.id));
+catalog.add(book2);
+console.log(catalog.getGenres());
+console.log(catalog.find(book1.id));
 //returns book1
 
-//console.log(catalog.find({id: book2.id, genre: 'IT'}));
+console.log(catalog.find({id: book2.id, genre: 'IT'}));
+//returns book2
+//
+console.log(catalog.search('js'));
 //returns book2
 
-//console.log(catalog.search('js'));
-// returns book2
-
-//console.log(catalog.search('javascript'));
+console.log(catalog.search('javascript'));
 //returns book1 and book2
 
-//console.log(catalog.search('Te sa zeleni'));
+console.log(catalog.search('Te sa zeleni'));
 //returns []
+*/
