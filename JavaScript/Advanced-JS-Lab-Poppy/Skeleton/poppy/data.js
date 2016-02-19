@@ -26,7 +26,7 @@ data = (function () {
 
         SuccessPop = (function () {
             function SuccessPop(title, message) {
-                Popup.call(this, title, message, 'success', 'bottomLeft', true, 100);
+                Popup.call(this, title, message, 'success', 'bottomLeft', true, 3000);
             }
 
             SuccessPop.extends(Popup);
@@ -35,7 +35,7 @@ data = (function () {
 
         InfoPop = (function () {
             function InfoPop(title, message) {
-                Popup.call(this, title, message, 'info', 'topLeft', false, 100, true);
+                Popup.call(this, title, message, 'info', 'topLeft', false, 1000, true);
             }
 
             InfoPop.extends(Popup);
@@ -44,7 +44,8 @@ data = (function () {
 
         ErrorPop = (function () {
             function ErrorPop(title, message) {
-                Popup.call(this, title, message, 'error', 'topRight');
+                Popup.call(this, title, message, 'error', 'topRight', false, 1000, false, false);
+                this.popupData.fadeOutOnClick = true;
             }
 
             ErrorPop.extends(Popup);

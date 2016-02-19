@@ -17,34 +17,42 @@ function pop(type, title, message) {
     }
 
     view = createPopupView(popup);
-    document.body.appendChild(view);
     processPopup(view, popup);
 }
 
-function fadeOut(domView, time, ev) {
+function fadeIn(el) {
+    var body = document.body;
+    body.appendChild(el);
+    el.style.transition = "opacity 1000ms";
+    el.style.opacity = 0;
+
+    setTimeout(function () {
+        el.style.opacity = 1;
+    }, 500);
+}
+
+function fadeOut(domView, time) {
     "use strict";
-    var op = 1, timer;  // initial opacity
-    timer = setInterval(function () {
-        if (op <= 0) {
-            clearInterval(timer);
-            domView.style.display = 'none';
-            if (ev) {
-                pop = ev.target.parentNode.parentNode;
-                pop.parentNode.removeChild(pop);
-            }
-        }
-        domView.style.opacity = op;
-        domView.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op -= 0.05;
+    domView.style.opacity = 0;
+    setTimeout(function () {
+        var patent = domView.parentNode;
+        patent.removeChild(domView);
     }, time);
 }
 
 function processPopup(domView, popup) {
     "use strict";
+
+    fadeIn(domView);
     if (popup.popupData.closeButton) {
         var button = document.getElementsByClassName('poppy-close-button')[0];
-        button.addEventListener('click', function (ev) {
-            fadeOut(domView, popup.popupData.timeOut, ev);
+        button.addEventListener('click', function () {
+            fadeOut(domView, popup.popupData.timeOut);
+        });
+    }
+    if (popup.popupData.fadeOutOnClick) {
+        domView.addEventListener('click', function () {
+            fadeOut(domView, popup.popupData.timeOut);
         });
     }
     if (popup.popupData.autoHide) {
@@ -53,8 +61,6 @@ function processPopup(domView, popup) {
     if (popup.popupData.callback) {
         domView.addEventListener('click', popup.popupData.callback);
     }
-
-
 }
 
 
