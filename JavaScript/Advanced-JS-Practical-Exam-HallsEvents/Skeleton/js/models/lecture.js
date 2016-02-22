@@ -1,33 +1,29 @@
-var app = app || {};
-
-(function (scope) {
+define(['validator', 'event', 'trainer', 'course', 'extensions'], function (validator, Event, Trainer, Course) {
     "use strict";
-    function Lecture(options) {
-        scope.Event.call(this, options);
-        this.setTrainer(options.trainer);
-        this.setCourse(options.course);
-    }
-
-    Lecture.extends(scope.Event);
-
-    Lecture.prototype.setTrainer = function (trainer) {
-        if (!(trainer instanceof scope.trainer)) {
-            throw new Error('Invalid trainer.');
+    return (function () {
+        function Lecture(options) {
+            Event.call(this, options);
+            this.setTrainer(options.trainer);
+            this.setCourse(options.course);
         }
-        this._trainer = trainer;
-    };
-    Lecture.prototype.getTrainer = function () {
-        return this._trainer;
-    };
-    Lecture.prototype.setCourse = function (course) {
-        if (!(course instanceof scope.course)) {
-            throw new Error('Invalid course.');
-        }
-        this._course = course;
-    };
-    Lecture.prototype.getCourse = function () {
-        return this._course;
-    };
 
-    scope.lecture = Lecture;
-}(app));
+        Lecture.extends(Event);
+
+        Lecture.prototype.setTrainer = function (trainer) {
+            validator.validateInstance(trainer, Trainer);
+            this._trainer = trainer;
+        };
+        Lecture.prototype.getTrainer = function () {
+            return this._trainer;
+        };
+        Lecture.prototype.setCourse = function (course) {
+            validator.validateInstance(course, Course);
+            this._course = course;
+        };
+        Lecture.prototype.getCourse = function () {
+            return this._course;
+        };
+
+        return Lecture;
+    }());
+});

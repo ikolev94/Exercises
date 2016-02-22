@@ -1,19 +1,41 @@
-var app = app || {};
+(function () {
+    "use strict";
+    require.config({
+        paths: {
+            'extensions': 'helpers/extentions',
+            'validator': 'helpers/validator',
+            'generator': 'generator',
+            'course': 'models/course',
+            'employee': 'models/employee',
+            'event': 'models/event',
+            'hall': 'models/hall',
+            'lecture': 'models/lecture',
+            'party': 'models/party',
+            'trainer': 'models/trainer'
+        }
+    });
+}());
 
-(function (eventSystem) {
+require(['generator'], function (generator) {
     var select = document.getElementById('halls');
 
-    fillSelect(select);
+    var fragment = document.createDocumentFragment();
+    generator.forEach(function (h) {
+        var option = document.createElement('option');
+        option.text = h.getName();
+        option.value = h.getName();
+        fragment.appendChild(option);
+    });
+    select.appendChild(fragment);
 
-    select.addEventListener('change', function (ev) {
+    select.addEventListener('change', function () {
         if ($('#halls option:first-child').val() === 'Choose Hall') {
             $('#halls option:first-child').remove();
         }
 
-        var _this = this;
+        var _this = this, lectures, parties, heading, grid, hall;
         if (this.value !== 'Choose Hall') {
-            var lectures, parties, heading, grid;
-            var hall = eventSystem.halls.filter(function (hall) {
+            hall = generator.filter(function (hall) {
                 return hall.getName() === _this.value;
             })[0];
             lectures = parseArray(hall.lectures, true);
@@ -69,20 +91,9 @@ var app = app || {};
                     {name: "isBirthday", title: 'Is a birthday party?', type: 'checkbox'},
                     {type: 'control', editButton: false}
                 ]
-            })
+            });
         }
     });
-
-    function fillSelect(select) {
-        var fragment = document.createDocumentFragment();
-        eventSystem.halls.forEach(function (h) {
-            var option = document.createElement('option');
-            option.text = h.getName();
-            option.value = h.getName();
-            fragment.appendChild(option);
-        });
-        select.appendChild(fragment);
-    }
 
     function parseArray(array, lecture) {
         var result = [];
@@ -95,12 +106,12 @@ var app = app || {};
             };
             if (lecture) {
                 obj.course = el.getCourse().getName() + ' [Numbers of Lectures: ' + el.getCourse().getNumberOfLectures() + ']';
-                obj.trainer = el.getTrainer().getName() + ' [Workhours: ' + el.getTrainer().getWorkhours() +
+                obj.trainer = el.getTrainer().getName() + ' [WorkHours: ' + el.getTrainer().getWorkHours() +
                     ', Feedbacks: ' + el.getTrainer().feedbacks.join(', ') + ']';
             } else {
                 obj.isBirthday = el.checkIsBirthday();
                 obj.isCatered = el.checkIsCatered();
-                obj.organiser = el.getOrganiser().getName() + ' [Workhours: ' + el.getOrganiser().getWorkhours() + ']';
+                obj.organiser = el.getOrganiser().getName() + ' [WorkHours: ' + el.getOrganiser().getWorkHours() + ']';
             }
             result.push(obj);
         });
@@ -108,4 +119,4 @@ var app = app || {};
 
         return result;
     }
-}(app));
+});

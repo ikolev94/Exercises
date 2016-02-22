@@ -1,27 +1,25 @@
-var app = app || {};
-
-(function (scope) {
+define(['validator', 'employee', 'course', 'extensions'], function (validator, Employee, Course) {
     "use strict";
-    function Trainer(name, workHours) {
-        scope.employee.call(this, name, workHours);
-        this.courses = [];
-        this.feedbacks = [];
-    }
-
-    Trainer.extends(scope.employee);
-
-    Trainer.prototype.addFeedback = function (feedback) {
-        if (typeof feedback !== 'string') {
-            throw new Error('Invalid feedback.');
+    return (function () {
+        function Trainer(name, workHours) {
+            Employee.call(this, name, workHours);
+            this.courses = [];
+            this.feedbacks = [];
         }
-        this.feedbacks.push(feedback);
-    };
-    Trainer.prototype.addCourse = function (course) {
-        if (!(course instanceof scope.course)) {
-            throw new Error('Invalid course.');
-        }
-        this.courses.push(course);
-    };
 
-    scope.trainer = Trainer;
-}(app));
+        Trainer.extends(Employee);
+
+        Trainer.prototype.addFeedback = function (feedback) {
+            if (typeof feedback !== 'string') {
+                throw new Error('Invalid feedback.');
+            }
+            this.feedbacks.push(feedback);
+        };
+        Trainer.prototype.addCourse = function (course) {
+            validator.validateInstance(course, Course);
+            this.courses.push(course);
+        };
+
+        return Trainer;
+    }());
+});
