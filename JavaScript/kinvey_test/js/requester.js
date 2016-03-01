@@ -28,12 +28,12 @@ app.requester = (function () {
         if (!useSession) {
             token = this.appId + ':' + this.appSecret;
             options.beforeSend = function (xhr) {
-                xhr.setRequestHeader('Authorization', 'Basic' + btoa(token));
+                xhr.setRequestHeader('Authorization', 'Basic ' + btoa(token));
             };
         } else {
             token = sessionStorage['sessionAuth'];
             options.beforeSend = function (xhr) {
-                xhr.setRequestHeader('Authorization', 'Kinvey' + token);
+                xhr.setRequestHeader('Authorization', 'Kinvey ' + token);
             };
         }
 
