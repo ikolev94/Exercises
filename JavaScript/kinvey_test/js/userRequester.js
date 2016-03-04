@@ -14,9 +14,8 @@ app.UserRequester = (function () {
                     email: email
                 };
         app.requester.makeRequest('POST', requestUrl, data).then(function (success) {
-            var result = success;
-            sessionStorage['sessionAuth'] = result._kmd.authtoken;
-            sessionStorage['userId'] = result._id;
+            sessionStorage['sessionAuth'] = success._kmd.authtoken;
+            sessionStorage['userId'] = success._id;
         }, function (error) {
             console.error(error);
         }).done()

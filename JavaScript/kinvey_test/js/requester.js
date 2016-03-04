@@ -7,23 +7,25 @@ app.requester = (function () {
         this.baseUrl = 'http://baas.kinvey.com/';
     }
 
-    Requester.prototype.makeRequest = function (method, url, data, useSession) {
+    Requester.prototype.makeRequest = function (method, url, dataObj, useSession) {
         var token,
-                defer = Q.defer(),
-                options = {
-                    method: method,
-                    url: url,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: JSON.stringify(data),
-                    success: function (data) {
-                        defer.resolve(data);
-                    },
-                    error: function (error) {
-                        defer.reject(error);
-                    }
-                };
+            defer = Q.defer(),
+            options = {
+                method: method,
+                url: url,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify(dataObj),
+                success: function (data) {
+                    $('<p>').text(JSON.stringify(data)).appendTo($('#respond')); //TODO: remove (Test purposes)
+                    defer.resolve(data);
+                },
+                error: function (error) {
+                    $('<p>').css('color', 'red').text(JSON.stringify(error.responseText)).appendTo($('#respond'));
+                    defer.reject(error);
+                }
+            };
 
         if (!useSession) {
             token = this.appId + ':' + this.appSecret;
