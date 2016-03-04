@@ -9,21 +9,21 @@ app.requester = (function () {
 
     Requester.prototype.makeRequest = function (method, url, data, useSession) {
         var token,
-            defer = Q.defer(),
-            options = {
-                method: method,
-                url: url,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: JSON.stringify(data),
-                success: function (data) {
-                    defer.resolve(data);
-                },
-                error: function (error) {
-                    defer.reject(error);
-                }
-            };
+                defer = Q.defer(),
+                options = {
+                    method: method,
+                    url: url,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: JSON.stringify(data),
+                    success: function (data) {
+                        defer.resolve(data);
+                    },
+                    error: function (error) {
+                        defer.reject(error);
+                    }
+                };
 
         if (!useSession) {
             token = this.appId + ':' + this.appSecret;
