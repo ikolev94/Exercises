@@ -66,20 +66,24 @@ var app = app || {},
                 })
         });
 
-        this.bind('edit-event', function (e, data) {
-            noteController.getNoteById(data.noteId)
+        this.get('#/edit/:id', function (e, data) {
+            noteController.getNoteById(this.params['id'])
                 .then(function (success) {
                     noteController.loadEditNotePage(selector, success)
                 }).done();
 
         });
 
-        this.bind('delete-event', function (e, data) {
-            noteController.getNoteById(data.noteId)
+        this.get('#/delete/:id', function (e, data) {
+            noteController.getNoteById(this.params['id'])
                 .then(function (success) {
                     noteController.loadDeleteNotePage(selector, success)
                 }).done();
 
+        });
+
+        this.bind('changeUrl', function (e, data) {
+            this.redirect(data.url);
         });
 
     });

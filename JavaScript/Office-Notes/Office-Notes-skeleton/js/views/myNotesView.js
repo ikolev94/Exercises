@@ -10,14 +10,14 @@ app.myNotesView = (function () {
             $('.edit').click(function () {
                 var id = $(this).attr('data-id');
                 Sammy(function () {
-                    this.trigger('edit-event', {noteId: id});
+                    this.trigger('changeUrl', {url: '#/edit/' + id});
                 })
             });
 
             $('.delete').click(function () {
                 var id = $(this).attr('data-id');
                 Sammy(function () {
-                    this.trigger('delete-event', {noteId: id});
+                    this.trigger('changeUrl', {url: '#/delete/' + id});
                 })
             })
         })
