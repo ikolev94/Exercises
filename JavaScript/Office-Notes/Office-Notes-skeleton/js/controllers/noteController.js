@@ -4,8 +4,9 @@ app.noteController = (function () {
     "use strict";
     var _this;
 
-    function NoteController(model) {
+    function NoteController(model, notesPerPage) {
         this.model = model;
+        this.notesPerPage = notesPerPage;
         _this = this;
     }
 
@@ -29,17 +30,43 @@ app.noteController = (function () {
         app.addNoteView(selector);
     };
 
-    NoteController.prototype.loadOfficeNotesPage = function (selector) {
-        this.getAllTodayNotes()
+    NoteController.prototype.loadOfficeNotesPage = function (selector, page) {
+        var deadline = new Date().toISOString().slice(0, 10);
+        this.getAllTodayNotes(deadline, page)
             .then(function (success) {
-                app.officeNotesView(selector, {notes: success});
+                _this.model.getNotesCount('?query={"deadline":"' + deadline + '"}')
+                    .then(function (data) {
+                        app.officeNotesView(selector,
+                            {
+                                notes: success,
+                                pagination: {
+                                    numberOfItems: data.count,
+                                    itemsPerPage: _this.notesPerPage,
+                                    selectedPage: page,
+                                    hrefPrefix: '#/office/'
+                                }
+                            });
+                    })
             }).done();
     };
 
-    NoteController.prototype.loadMyNotes = function (selector) {
-        this.getMyNotes()
+    NoteController.prototype.loadMyNotes = function (selector, page) {
+        this.getMyNotes(page)
             .then(function (success) {
-                app.myNotesView(selector, {notes: success});
+                _this.model.getNotesCount('?query={"author":"' + sessionStorage['username'] + '"}')
+                    .then(function (data) {
+                        app.myNotesView(selector,
+                            {
+                                notes: success,
+                                pagination: {
+                                    numberOfItems: data.count,
+                                    itemsPerPage: _this.notesPerPage,
+                                    selectedPage: page,
+                                    hrefPrefix: '#/myNotes/'
+                                }
+                            });
+                    })
+
             }).done();
     };
 
@@ -56,17 +83,18 @@ app.noteController = (function () {
         return this.model.addNote(data);
     };
 
-    NoteController.prototype.getAllTodayNotes = function () {
-        var deadline = new Date().toISOString().slice(0, 10);
-        return this.model.getNotesByDay(deadline);
+    NoteController.prototype.getAllTodayNotes = function (deadline, page) {
+        var toSkip = (page - 1) * this.notesPerPage;
+        return this.model.getNotesByDay(deadline, this.notesPerPage, toSkip);
     };
 
     NoteController.prototype.getNoteById = function (id) {
         return this.model.getNoteById(id);
     };
 
-    NoteController.prototype.getMyNotes = function () {
-        return this.model.getNotesByAuthor(sessionStorage['username']);
+    NoteController.prototype.getMyNotes = function (page) {
+        var toSkip = (page - 1) * this.notesPerPage;
+        return this.model.getNotesByAuthor(sessionStorage['username'], this.notesPerPage, toSkip);
     };
 
 
@@ -88,10 +116,8 @@ app.noteController = (function () {
             _this.model.editNoteById(data.noteId, data.note)
                 .then(function (success) {
                     Noty.success('You have successfully edit a note!');
-                    //sammyObj.redirect('#/myNotes')
                 }, function (error) {
                     Noty.error('Invalid note edit!');
-                    //sammyObj.redirect('')
                 });
             this.redirect('#/myNotes/');
         });
@@ -101,10 +127,8 @@ app.noteController = (function () {
             _this.model.deleteNoteById(data.noteId)
                 .then(function (success) {
                     Noty.success('You have successfully delete a note!');
-                    //sammyObj.redirect('#/myNotes')
                 }, function (error) {
                     Noty.error('Invalid note remove!');
-                    //sammyObj.redirect('')
                 });
             this.redirect('#/myNotes/');
         })
@@ -113,8 +137,8 @@ app.noteController = (function () {
 
 
     return {
-        load: function (model) {
-            return new NoteController(model);
+        load: function (model, notesPerPage) {
+            return new NoteController(model, notesPerPage);
         }
     }
 }());

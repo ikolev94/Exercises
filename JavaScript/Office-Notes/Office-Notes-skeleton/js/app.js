@@ -8,8 +8,8 @@ var app = app || {},
         requester = app.requester.load(APP_ID, APP_SECRET, BASE_URL),
         userModel = app.userModel.load(requester),
         noteModel = app.noteModel.load(requester),
-        homeController = app.homeController.load(userModel),
-        noteController = app.noteController.load(noteModel),
+        homeController = app.homeController.load(),
+        noteController = app.noteController.load(noteModel, 10),
         userController = app.userController.load(userModel);
 
     var router = Sammy(function () {
@@ -50,12 +50,20 @@ var app = app || {},
             noteController.loadAddNotePage(selector);
         });
 
-        this.get('#/office/', function () {
-            noteController.loadOfficeNotesPage(selector);
+        this.get('#/office/([-0-9]+)?', function () {
+            var page = 1;
+            if (this.params['splat'][0]) {
+                page = this.params['splat'][0];
+            }
+            noteController.loadOfficeNotesPage(selector, page);
         });
 
-        this.get('#/myNotes/', function () {
-            noteController.loadMyNotes(selector);
+        this.get('#/myNotes/([-0-9]+)?', function () {
+            var page = 1;
+            if (this.params['splat'][0]) {
+                page = this.params['splat'][0];
+            }
+            noteController.loadMyNotes(selector, page);
         });
 
         this.get('#/logout/', function () {

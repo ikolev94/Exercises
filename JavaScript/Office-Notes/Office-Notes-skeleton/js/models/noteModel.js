@@ -10,13 +10,13 @@ app.noteModel = (function () {
         return this.requester.post(this.serviceUrl, data, true);
     };
 
-    NoteModel.prototype.getNotesByDay = function (deadline) {
-        var url = this.serviceUrl + '?query={"deadline":"' + deadline + '"}';
+    NoteModel.prototype.getNotesByDay = function (deadline, notesPerPage, toSkip) {
+        var url = this.serviceUrl + '?query={"deadline":"' + deadline + '"}&limit=' + notesPerPage + '&skip=' + toSkip;
         return this.requester.get(url, true)
     };
 
-    NoteModel.prototype.getNotesByAuthor = function (author) {
-        var url = this.serviceUrl + '?query={"author":"' + author + '"}';
+    NoteModel.prototype.getNotesByAuthor = function (author, notesPerPage, toSkip) {
+        var url = this.serviceUrl + '?query={"author":"' + author + '"}&limit=' + notesPerPage + '&skip=' + toSkip;
         return this.requester.get(url, true)
     };
 
@@ -33,6 +33,11 @@ app.noteModel = (function () {
     NoteModel.prototype.deleteNoteById = function (id) {
         var url = this.serviceUrl + id;
         return this.requester.remove(url, true);
+    };
+
+    NoteModel.prototype.getNotesCount = function (query) {
+        var url = this.serviceUrl + '_count' + query;
+        return this.requester.get(url, true);
     };
 
     return {

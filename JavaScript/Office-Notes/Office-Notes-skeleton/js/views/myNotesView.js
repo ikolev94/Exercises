@@ -19,7 +19,14 @@ app.myNotesView = (function () {
                 Sammy(function () {
                     this.trigger('changeUrl', {url: '#/delete/' + id});
                 })
-            })
+            });
+
+            $('#pagination').pagination({
+                items: data.pagination.numberOfItems,
+                itemsOnPage: data.pagination.itemsPerPage,
+                ccsStyle: 'light-theme',
+                hrefTextPrefix: data.pagination.hrefPrefix
+            }).pagination('selectPage', data.pagination.selectedPage);
         })
     }
 
