@@ -29,7 +29,7 @@ app.requester = (function () {
 
     function makeRequest(method, url, dataObj, useSession) {
         var token,
-            defer = Q.defer(),
+            //defer = Q.defer(),
             options = {
                 method: method,
                 url: that.baseUrl + url,
@@ -37,12 +37,12 @@ app.requester = (function () {
                     'Content-Type': 'application/json'
                 },
                 data: JSON.stringify(dataObj) || undefined,
-                success: function (data) {
-                    defer.resolve(data);
-                },
-                error: function (error) {
-                    defer.reject(error);
-                }
+                //success: function (data) {
+                //    defer.resolve(data);
+                //},
+                //error: function (error) {
+                //    defer.reject(error);
+                //}
             };
 
         if (!useSession) {
@@ -57,8 +57,8 @@ app.requester = (function () {
             };
         }
 
-        $.ajax(options);
-        return defer.promise;
+        return $.ajax(options);
+        //return defer.promise;
     }
 
     return {
