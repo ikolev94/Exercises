@@ -29,20 +29,13 @@ app.requester = (function () {
 
     function makeRequest(method, url, dataObj, useSession) {
         var token,
-        //defer = Q.defer(),
             options = {
                 method: method,
                 url: that.baseUrl + url,
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                data: JSON.stringify(dataObj) || undefined,
-                //success: function (data) {
-                //    defer.resolve(data);
-                //},
-                //error: function (error) {
-                //    defer.reject(error);
-                //}
+                data: JSON.stringify(dataObj) || undefined
             };
 
         if (!useSession) {
@@ -58,7 +51,6 @@ app.requester = (function () {
         }
 
         return $.ajax(options);
-        //return defer.promise;
     }
 
     return {
