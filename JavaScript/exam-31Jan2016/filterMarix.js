@@ -1,48 +1,39 @@
 function solve(input) {
-
-    var num = Number(input[input.length - 1]);
-    input.splice(-1, 1);
-
-    var allSymbols = [];
-    var matrix = [];
-
-    for (var row = 0; row < input.length; row++) {
-        var line = input[row].split(' ');
-        matrix.push(line);
-
-        for (var n = 0; n < line.length; n++) {
-            allSymbols.push(line[n]);
-        }
+    var count = 1, sequenceLength, matrix = [], line = [], output = [];
+    sequenceLength = Number(input[input.length - 1]);
+    for (var i = 0; i < input.length - 1; i++) {
+        var obj = input[i].split(/\s+/g);
+        matrix[i] = obj;
+        line = line.concat(obj)
     }
-
-    var count = 1;
-    for (var j = 1; j < allSymbols.length; j++) {
-        if (allSymbols[j] === allSymbols[j - 1]) {
+    for (var j = 1; j < line.length; j++) {
+        if (line[j] === line[j - 1]) {
             count++;
-            if (count === num) {
-                for (var i = 0; i < num; i++) {
-                    allSymbols[j - i] = 'remove'
+            if (count === sequenceLength) {
+                for (k = j - sequenceLength + 1; k <= j; k++) {
+                    line[k] = 'remove';
                 }
                 count = 1;
-                j++;
             }
         } else {
-            count = 1;
+            count = 1
         }
     }
-
-    var index = 0;
-    for (var r = 0; r < matrix.length; r++) {
-        var currentRow = [];
-        for (var c = 0; c < matrix[r].length; c++) {
-            if (allSymbols[index++] !== 'remove') {
-                currentRow.push(matrix[r][c]);
+    count = 0;
+    for (var row = 0; row < matrix.length; row++) {
+        for (var col = 0; col < matrix[row].length; col++) {
+            if (line[count++] !== 'remove') {
+                output.push(matrix[row][col])
             }
         }
+        if (output.length) {
+            console.log(output.join(' '));
+            output = [];
+        } else {
+            console.log('(empty)');
+        }
 
-        currentRow.length > 0 ? console.log(currentRow.join(' ')) : console.log('(empty)');
     }
-
 }
 
 solve(
