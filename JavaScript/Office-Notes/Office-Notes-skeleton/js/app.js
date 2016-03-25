@@ -74,7 +74,7 @@ var app = app || {},
                 })
         });
 
-        this.get('#/edit/:id', function (e, data) {
+        this.get('#/edit/:id', function () {
             noteController.getNoteById(this.params['id'])
                 .then(function (success) {
                     noteController.loadEditNotePage(selector, success)
@@ -82,7 +82,7 @@ var app = app || {},
 
         });
 
-        this.get('#/delete/:id', function (e, data) {
+        this.get('#/delete/:id', function () {
             noteController.getNoteById(this.params['id'])
                 .then(function (success) {
                     noteController.loadDeleteNotePage(selector, success)
