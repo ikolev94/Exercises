@@ -1,31 +1,28 @@
 function solve(input) {
-    var text = input.join('\r\n'),
-        pattern = /mine\s+(.+)?\s*-\s+(gold|silver|diamonds)\s*:\s*(\d+)/g,
-        info,
-        ores = {'gold': 0, 'silver': 0, 'diamonds': 0};
-    while (info = pattern.exec(text)) {
-        var amount = Number(info[3]);
-        switch (info[2]) {
-            case'gold':
-                ores['gold'] += amount;
-                break;
-            case'diamonds':
-                ores['diamonds'] += amount;
-                break;
-            case'silver':
-                ores['silver'] += amount;
-                break;
-            default:
-                console.log('Error');
+    var shards = {Silver: 0, Gold: 0, Diamonds: 0};
+    input.forEach(function (line) {
+        if (/-/.test(line)) {
+            var args = line.split(/-\s+/)[1].split(/\s+:\s+/);
+            var type = args[0];
+            var amount = Number(args[1]);
+            switch (type) {
+                case 'gold':
+                    shards.Gold += amount;
+                    break;
+                case 'silver':
+                    shards.Silver += amount;
+                    break;
+                case 'diamonds':
+                    shards.Diamonds += amount;
+                    break;
+            }
         }
-    }
-    console.log('*Silver: ' + ores['silver']);
-    console.log('*Gold: ' + ores['gold']);
-    console.log('*Diamonds: ' + ores['diamonds']);
+    });
+    console.log('*Silver: %d\n*Gold: %d\n*Diamonds: %d\n', shards.Silver, shards.Gold, shards.Diamonds);
 }
 
-solve([ 'mine bobovdol - gold : 10',
+solve(['mine bobovdol - gold : 10',
     'mine - diamonds : 5',
     'mine colas - wood : 10',
     'mine myMine - silver :  14',
-    'mine silver:14 - silver : 14' ]);
+    'mine silver:14 - silver : 14']);

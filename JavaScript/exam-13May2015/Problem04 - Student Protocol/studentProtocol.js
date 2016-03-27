@@ -1,38 +1,29 @@
 function solve(input) {
-    var data = {};
-    for (var i = 0; i < input.length; i++) {
-        var inputArgs = input[i].replace(/\s+/g, ' ').split(/-|:/g).map(function (e) {
-            return e.trim();
-        });
 
-        var name = inputArgs[0];
-        var course = inputArgs[1];
-        var result = Number(inputArgs[2]);
-
-        if (result < 0 || result > 400) continue;
-
-        if (!data[course]) data[course] = [];
-
-        var currentStudent = data[course].filter(function (e) {
-            return e.name === name;
-        })[0];
-
-        if (!currentStudent) {
-            data[course].push(
-                {
-                    'name': name,
-                    'result': result,
-                    'makeUpExams': 0
-                }
-            );
-        } else {
-            if (currentStudent.result < result) currentStudent.result = result;
-            currentStudent.makeUpExams++;
+    var studentsArgs, name, exam, score, student, keys, j, data = {};
+    input.forEach(function (line) {
+        studentsArgs = line.trim().split(/\s*-\s*|\s*:\s*/);
+        name = studentsArgs[0];
+        exam = studentsArgs[1];
+        score = Number(studentsArgs[2]);
+        if (score >= 0 && score <= 400) {
+            if (!data[exam]) {
+                data[exam] = [];
+            }
+            student = data[exam].filter(function (e) {
+                return e.name === name;
+            })[0];
+            if (!student) {
+                data[exam].push({name: name, result: score, makeUpExams: 0});
+            } else {
+                student.makeUpExams++;
+                student.result = Math.max(student.result, score);
+            }
         }
-    }
+    });
 
-    var keys = Object.keys(data);
-    for (var j = 0; j < keys.length; j++) {
+    keys = Object.keys(data);
+    for (j = 0; j < keys.length; j++) {
         data[keys[j]].sort(function (a, b) {
             if (a.result !== b.result) {
                 return b.result - a.result;
@@ -46,9 +37,10 @@ function solve(input) {
     console.log(JSON.stringify(data));
 }
 
-//solve(['Peter Jackson - Java : 350',
-//    'Jane - JavaScript : 200',
-//    'Jane     -    JavaScript :     400',
-//    'Simon Cowell - PHP : 100',
-//    'Simon Cowell-PHP: 500',
-//    'Simon Cowell - PHP : 200']);
+solve([
+    'Peter Jackson - Java : 350',
+    'Jane - JavaScript : 200',
+    'Jane     -    JavaScript :     400',
+    'Simon Cowell - PHP : 100',
+    'Simon Cowell-PHP: 500',
+    'Simon Cowell - PHP : 200']);
